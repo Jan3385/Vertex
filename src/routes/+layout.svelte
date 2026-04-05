@@ -8,17 +8,21 @@
   let { children } = $props();
 
   const docLinks = [
-    { href: resolve('/'), label: 'Getting Started', level: 0 },
-    { href: resolve('/setup'), label: 'Setup', level: 1 },
+    { href: resolve('/'),       label: 'Getting Started', level: 0 },
+    { href: resolve('/setup'),  label: 'Setup', level: 1 },
   ] as const;
 
   function GetClassFromLevel(level: number) {
-    const base = 'rounded py-1.5 font-mono ';
+    const classBase = 'rounded py-1.5 font-mono hover:bg-zinc-700 border-l-4 ';
     switch (level) {
       case 0:
-        return base + 'text-violet-400 px-3 text hover:bg-zinc-700';
+        return classBase + 'text-violet-400 px-3 underline';
       case 1:
-        return base + 'text-violet-300 px-8 text-sm hover:bg-zinc-700';
+        return classBase + 'text-violet-300 px-7 text-sm';
+      case 2:
+        return classBase + 'text-violet-300 px-11 text-sm';
+      case 3:
+        return classBase + 'text-violet-300 px-14 text-sm';
       default:
         return '';
     }
@@ -87,6 +91,7 @@
           class={GetClassFromLevel(link.level)}
           class:font-bold={link.href === page.url.pathname}
           class:text-white={link.href === page.url.pathname}
+          class:border-transparent={link.href !== page.url.pathname}
         >
           {link.label}
         </a>
