@@ -1,42 +1,13 @@
-# sv
+# Hii! Project is mostly under construction but here are the basics:
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Vertex is currently a web guide into creating your first OpenGL program
 
-## Creating a project
+It is a collection of information I collected on my journey thanks to sites like `learnopengl.com` plus a lot of my personal remarks
 
-If you're seeing this, you've probably already done this step. Congrats!
+## How to run
 
-```sh
-# create a new project
-npx sv create my-app
-```
+To install all modules needed run `npm install`
 
-To recreate this project with the same configuration:
+Then to start the project run `npm run dev`
 
-```sh
-# recreate this project
-npx sv@0.14.0 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography" --install npm Vertex
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Afterwards the website should be running at `http://localhost:5173` (as shown in your console)
