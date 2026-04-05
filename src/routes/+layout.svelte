@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { resolve } from '$app/paths'
+  import { resolve } from '$app/paths';
   import { page } from '$app/state';
 
   import './layout.css';
@@ -13,20 +13,72 @@
   ] as const;
 
   function GetClassFromLevel(level: number) {
+    const base = 'rounded py-1.5 font-mono ';
     switch (level) {
       case 0:
-        return 'text-violet-400 rounded px-3 py-1.5 text hover:bg-zinc-700';
+        return base + 'text-violet-400 px-3 text hover:bg-zinc-700';
       case 1:
-        return 'text-violet-300 rounded px-8 py-1.5 text-sm hover:bg-zinc-700';
+        return base + 'text-violet-300 px-8 text-sm hover:bg-zinc-700';
       default:
         return '';
     }
   }
+
+  type heading = {
+    id: string;
+    text: string;
+    level: number;
+  };
+
+  let headings = $state<heading[]>([]);
+  let activeId = $state('');
+
+  function CollectHeadings() {
+    headings = [];
+    const headingElements = document.querySelectorAll('.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6');
+
+    headingElements.forEach((element) => {
+      if (element.id) {
+        headings.push({
+          id: element.id,
+          text: element.textContent || '',
+          level: parseInt(element.tagName.substring(1)),
+        });
+      }
+    });
+  }
+
+  let observer: IntersectionObserver | null = null;
+
+  $effect(() => {
+    const pathname = page.url.pathname;
+    if (!pathname) return;
+
+    setTimeout(() => {
+      CollectHeadings();
+      observer?.disconnect();
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) activeId = entry.target.id;
+          }
+        },
+        { rootMargin: '0px 0px -80% 0px' }
+      );
+
+      const els = document.querySelectorAll('.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6');
+      els.forEach((el) => observer!.observe(el));
+    }, 50);
+
+    return () => observer?.disconnect();
+  });
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="flex min-h-screen bg-zinc-950">
+<!-- Left sidebar -->
+<div class="flex h-screen overflow-hidden bg-zinc-950">
   <aside class="w-64 border-r border-violet-800 bg-zinc-900 p-6 shrink-0">
     <nav class="flex flex-col gap-2">
       {#each docLinks as link (link.href)}
@@ -42,7 +94,26 @@
     </nav>
   </aside>
 
-  <main class="flex-1 p-8 prose prose-invert max-w-none">
+  <!-- Main content -->
+  <main class="flex-1 p-8 prose prose-invert max-w-none font-mono overflow-auto no-scrollbar">
     {@render children()}
   </main>
+
+  <!-- Right sidebar -->
+  {#if headings.length > 0}
+    <aside class="w-52 shrink-0 border-l border-violet-900 bg-zinc-900 p-4 sticky top-0 h-screen overflow-auto">
+      <p class="select-none text-xs text-center font-bold font-mono uppercase text-violet-400 mb-3">On this page</p>
+      <nav class="flex flex-col gap-1">
+        {#each headings as heading (heading.id)}
+          <a
+            href="#{heading.id}"
+            class="font-mono text-sm  hover:text-zinc-100 transition-colors py-1 {activeId === heading.id ? 'text-violet-400 font-bold' : 'text-zinc-400'}"
+            style="padding-left: {(heading.level) * 12}px"
+          >
+            {heading.text}
+          </a>
+        {/each}
+      </nav>
+    </aside>
+  {/if}
 </div>
