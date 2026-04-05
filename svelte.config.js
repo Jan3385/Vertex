@@ -4,11 +4,36 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import rehypeSlug from 'rehype-slug'
 import { relative, sep } from 'node:path';
+import { createHighlighter } from 'shiki';
+
+const codeHighlighter = await createHighlighter({
+	themes: ['github-dark'],
+	langs: ['bash', 'glsl', 'cpp', 'c']
+})
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: ['.svelte', '.md'],
-	preprocess: [vitePreprocess(), mdsvex({ extensions: ['.md'], rehypePlugins: [rehypeSlug] })],
+	preprocess: [vitePreprocess(), 
+		mdsvex({ 
+			extensions: ['.md'], 
+			rehypePlugins: [rehypeSlug],
+			highlight: {
+				highlighter: (code, lang) => {
+					let html = codeHighlighter.codeToHtml(code, {
+							lang: lang ?? 'text',
+							theme: 'github-dark'
+					})
+					
+					// Escape curly braces to prevent Svelte from trying to interpret them as template syntax
+					html = html
+						.replace(/{/g, '&#123;')
+						.replace(/}/g, '&#125;');
+
+					return html;
+				}
+			}
+	})],
 	
 	compilerOptions: {
 		runes: ({ filename }) => {

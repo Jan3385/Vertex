@@ -11,6 +11,15 @@ haha intro :P
 
 .
 
+```cpp
+// A little script to make my grandma proud
+#include <iostream>
+
+void main(){
+    std::cout << "Wow, its almost like printf but not!" << std::endl;
+}
+```
+
 .
 
 .

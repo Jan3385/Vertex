@@ -95,7 +95,7 @@
   </aside>
 
   <!-- Main content -->
-  <main class="flex-1 p-8 prose prose-invert max-w-none font-mono overflow-auto no-scrollbar">
+  <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar">
     {@render children()}
   </main>
 
@@ -107,7 +107,7 @@
         {#each headings as heading (heading.id)}
           <a
             href="#{heading.id}"
-            class="font-mono text-sm  hover:text-zinc-100 transition-colors py-1 {activeId === heading.id ? 'text-violet-400 font-bold' : 'text-zinc-400'}"
+            class="border-l font-mono text-sm hover:text-zinc-100 transition-colors duration-250 py-1 {activeId === heading.id ? 'text-violet-400 font-bold border-white' : 'text-zinc-400 border-zinc-700'}"
             style="padding-left: {(heading.level) * 12}px"
           >
             {heading.text}
