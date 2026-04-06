@@ -1,0 +1,58 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Wno-unused-parameter",
+                "CMAKE_CXX_FLAGS_DEBUG": "-g -fno-omit-frame-pointer"
+            }
+        },
+        {
+            "name": "debug-windows",
+            "inherits": "base",
+            "hidden": false,
+            "description": "Debug configuration - Windows",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_VERBOSE_MAKEFILE": "ON",
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-static"
+            }
+        },
+        {
+            "name": "release-windows",
+            "inherits": "base",
+            "hidden": false,
+            "description": "Release configuration - Windows",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-static"
+            }
+        },
+        {
+            "name": "release-linux",
+            "inherits": "base",
+            "hidden": false,
+            "description": "Release configuration - Linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "VCPKG_TARGET_TRIPLET": "x64-linux"
+            }
+        },
+        {
+            "name": "debug-linux",
+            "inherits": "base",
+            "hidden": false,
+            "description": "Debug configuration - Linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_VERBOSE_MAKEFILE": "ON",
+                "VCPKG_TARGET_TRIPLET": "x64-linux"
+            }
+        }
+    ]
+}

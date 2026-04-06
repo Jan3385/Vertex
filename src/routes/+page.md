@@ -4,6 +4,8 @@ This guide will be using **OpeGL** with **C++**, **GLFW**, **GLAD** and **GLM**.
 
 If you are planning to use C++ you should follow the [setup guide](/setup) to create your project
 
+If you ever need additional resources for learning OpenGL [learnopengl.com](https://learnopengl.com) is a great place to start
+
 ## Do I need to use C++?
 
 No! OpenGL has been ported over to so many languages that there is a very big chance that it will work even on your preferred language. If you do not see your preffered language in the following examples it does not mean it does not have an OpenGL port. Look up if your language allows using the OpenGL API!

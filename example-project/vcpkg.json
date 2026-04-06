@@ -1,0 +1,10 @@
+{
+  "name": "my-project",
+  "version": "0.1.0",
+  "description": "My first OpenGL project!",
+  "dependencies": [
+    "glfw3",
+    "glm"
+  ],
+  "builtin-baseline": "b91c3336aee7f32412508f7dd351ae2cabdb8819"
+}
