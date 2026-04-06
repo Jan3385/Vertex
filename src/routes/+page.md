@@ -1,6 +1,9 @@
 <script>
   import GLCanvas from '$lib/components/GLCanvas.svelte';
   import colorfulTriangle from '$lib/sketches/colorfulTriangle.ts'
+  
+  import Note from '$lib/components/Note.svelte';
+  import Warning from '$lib/components/Warning.svelte';
 </script>
 
 # About this guide

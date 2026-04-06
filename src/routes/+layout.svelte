@@ -8,8 +8,10 @@
   let { children } = $props();
 
   const docLinks = [
-    { href: resolve('/'),       label: 'Getting Started', level: 0 },
-    { href: resolve('/setup'),  label: 'Setup', level: 1 },
+    { href: resolve('/'),                  label: 'Getting Started', level: 0 },
+    { href: resolve('/setup'),             label: 'Setup', level: 1 },
+    { href: resolve('/creating-a-window'), label: 'Creating a Window', level: 1 },
+    { href: resolve('/my-first-triangle'), label: 'My First Triangle', level: 0 },
   ] as const;
 
   function GetClassFromLevel(level: number) {
@@ -87,8 +89,7 @@
 <div class="flex flex-col h-screen overflow-hidden bg-zinc-950">
   <!-- Header -->
   <header class="shrink-0 h-14 border-b border-violet-800 bg-zinc-900 flex items-center px-6">
-    <h1 class="text-lg font-bold text-violet-400 font-mono">Vertex</h1>
-
+    <h1 class="text-lg font-bold text-violet-400 font-mono select-none">Vertex - YSWS guide</h1>
   </header>
 
   <!-- Left sidebar -->

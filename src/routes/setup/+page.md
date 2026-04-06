@@ -1,6 +1,13 @@
+<script>
+  import Note from '$lib/components/Note.svelte';
+  import Warning from '$lib/components/Warning.svelte';
+</script>
+
+
 # Setting up a C++ project with CMAKE
 
-Note that on Linux you may have some issues if using hyprland as it does not like the default glfw library. You would have to modify the CMakeLists.txt a bit for it to work
+
+<Note>on Linux you may have some issues if using hyprland as it does not like the default glfw library. You would have to modify the CMakeLists.txt a bit for it to work</Note>
 
 [There is an example project](https://github.com/Jan3385/Vertex/tree/main/example-project) in the github for these docs which you can download to have the project already set up. If you plan to just download the template I do still recommend to read this chapter as some apps need to be configured outside of the project
 
@@ -142,7 +149,7 @@ Here is an example of how `CmakePresets.json` may look like
 }
 ```
 
-Note that this example expects you to have a mingw compiler installed on windows!
+<Warning>this example expects you to have a mingw compiler installed on windows!</Warning>
 
 Place the `CmakePresets.json` inside your root project folder
 
@@ -249,7 +256,10 @@ Then we need to tell CMake what preset we are gonna be using with
 # instead of release-windows you can use any preset
 cmake -S . --preset release-windows
 ```
-Note that is you have not set VCPKG as your enviroment variable you will also need to add an argument like `-DCMAKE_TOOLCHAIN_FILE="/PATH/TO/VCPKG/CMAKE/vcpkg.cmake"`
+
+<Note>
+    If you have not set VCPKG as your enviroment variable you will also need to add an argument like `-DCMAKE_TOOLCHAIN_FILE="/PATH/TO/VCPKG/CMAKE/vcpkg.cmake"`
+</Note>
 
 And as the last command you just need to run
 ```bash
@@ -258,4 +268,6 @@ cmake --build build
 
 Now in your generated `build/` directory you will see an executable called `MyProject.exe` or `MyProject`. Running it from inside the build folder will run your project
 
-Note that editors like VS Code have packages that can manage the commands like building and selection a preset or execution of code for you
+<Note>
+    Editors like VS Code have packages that can manage commands like building and selecting a preset or execution of code for you
+</Note>
