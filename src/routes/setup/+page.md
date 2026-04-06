@@ -18,7 +18,7 @@ Setting up glad is more work than any other libraries we are gonna be using. Sin
 To generate our library using the website we just need to set the OpenGL version to 3.3 or higher (going lower may break things in this tutorial, higher will not as of April 2026). You also need the option for *Generate a loader* to be ON. You can ignore the extensions as we do not need any of them
 
 The CMakeLists.txt below expects you to place the generated files as following
- - Make a folder in the root of the project that `external/glad/`
+ - Make a folder in the root of the project as `external/glad/`
  - inside the folder place the `include` and `src` as `external/glad/include` and `external/glad/src`
 
 The `glad.zip` provided contains the `include` and `src` in one zip
@@ -32,7 +32,6 @@ First thing we need to do is to download the vcpkg
 Windows:
 ```bash
 git clone https://github.com/microsoft/vcpkg.git C:\dev\vcpkg
-
 cd C:\dev\vcpkg
 
 .\bootstrap-vcpkg.bat
@@ -57,7 +56,7 @@ echo 'export VCPKG_ROOT=~/vcpkg' >> ~/.bashrc
 
 ### vcpkg.json
 
-vcpkg.json tells the vcpkg and CMake what packages we will be using from vcpkg. The general template will look like this
+vcpkg.json tells the vcpkg and CMake which packages we will be using from vcpkg. The general template will look like this
 
 ```json
 {
@@ -72,7 +71,7 @@ vcpkg.json tells the vcpkg and CMake what packages we will be using from vcpkg. 
 }
 ```
 
-The **builtin-baseline** may look scary at first but what it means is "I only want packages that are not older than this date". This helps our project to not break in the future where packages may change. You can find your own builtin-baseline or just use the one provided in this example 
+The **builtin-baseline** may look scary at first but what it means is *"I only want packages that are not older than this date"*. This helps our project to not break in the future where packages may change. You can find your own builtin-baseline or just use the one provided in this example 
 
 Place the `vcpkg.json` inside the root project folder
 
