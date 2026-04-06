@@ -1,10 +1,19 @@
+<script>
+  import GLCanvas from '$lib/components/GLCanvas.svelte';
+  import colorfulTriangle from '$lib/sketches/colorfulTriangle.ts'
+</script>
+
 # About this guide
 
-This guide will be using **OpeGL** with **C++**, **GLFW**, **GLAD** and **GLM**. If you don't know any of the stuff its fine as we will be learning about each of them separately
+This guide will be using **OpenGL** with **C++**, **GLFW**, **GLAD** and **GLM**. If you don't know any of the stuff its fine as we will be learning about each of them separately. This guide will help you go from knowing absolutely nothing to making your own 3D spinning cube
 
 If you are planning to use C++ you should follow the [setup guide](/setup) to create your project
 
 If you ever need additional resources for learning OpenGL [learnopengl.com](https://learnopengl.com) is a great place to start
+
+During this guide you may see canvas elements such as this one:
+<GLCanvas sketch={colorfulTriangle}/>
+These canvas elements provide you with a live visual feedback of whats being showcased. These canvas elements use WebGL context which is really similar to OpenGL
 
 ## Do I need to use C++?
 
