@@ -1,11 +1,14 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
+  import { afterNavigate } from '$app/navigation';
 
   import './layout.css';
   import favicon from '$lib/assets/favicon.svg';
 
   let { children } = $props();
+
+  let mainElement: HTMLElement;
 
   const docLinks = [
     { href: resolve('/'),                  label: 'Getting Started', level: 0 },
@@ -61,6 +64,7 @@
     if (!pathname) return;
 
     setTimeout(() => {
+
       CollectHeadings();
       observer?.disconnect();
 
@@ -78,6 +82,10 @@
     }, 50);
 
     return () => observer?.disconnect();
+  });
+
+  afterNavigate(() => {
+    mainElement.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
 
@@ -111,7 +119,7 @@
     </aside>
   
     <!-- Main content -->
-    <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar scroll-smooth">
+    <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar scroll-smooth" bind:this={mainElement}>
       {@render children()}
     </main>
   
