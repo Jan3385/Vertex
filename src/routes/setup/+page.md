@@ -13,9 +13,9 @@
 
 ## GLAD
 
-Setting up glad is more work than any other libraries we are gonna be using. Since GLAD needs to have a different structure for every version, with every added extension and specification we need to generate ourselfes a GLAD library that fits us. This can be done easily thanks to the [GLAD web service](https://glad.dav1d.de)
+Setting up glad is more work than any other libraries we are gonna be using. Since GLAD needs to have a different structure for every version, with every added extension and specification we need to generate ourselves a GLAD library that fits us. This can be done easily thanks to the [GLAD web service](https://glad.dav1d.de)
 
-To generate our library using the website we just need to set the OpenGL version to 3.3 or higher (going lower may break things in this tutorial, higher will not as of April 2026). You also need the option for *Generate a loader* to be ON. You can ingore the extensions as we do not need any of them
+To generate our library using the website we just need to set the OpenGL version to 3.3 or higher (going lower may break things in this tutorial, higher will not as of April 2026). You also need the option for *Generate a loader* to be ON. You can ignore the extensions as we do not need any of them
 
 The CMakeLists.txt below expects you to place the generated files as following
  - Make a folder in the root of the project that `external/glad/`
@@ -52,7 +52,7 @@ cd ~/vcpkg
 
 # if using bash use:
 echo 'export VCPKG_ROOT=~/vcpkg' >> ~/.bashrc
-# the main thing is you want to run `export VCPKG_ROOT=~/vcpkg` so VCPKG_ROOT becomes an enviroment variable
+# the main thing is you want to run `export VCPKG_ROOT=~/vcpkg` so VCPKG_ROOT becomes an environment variable
 ```
 
 ### vcpkg.json
@@ -72,13 +72,13 @@ vcpkg.json tells the vcpkg and CMake what packages we will be using from vcpkg. 
 }
 ```
 
-The **buildin-baselide** may look scary at first but what it means is "I only want packages that are not older than this date". This helps our project to not break in the future where packages may change. You can find your own buildin-baseline or just use the one provided in this example 
+The **builtin-baseline** may look scary at first but what it means is "I only want packages that are not older than this date". This helps our project to not break in the future where packages may change. You can find your own builtin-baseline or just use the one provided in this example 
 
 Place the `vcpkg.json` inside the root project folder
 
 ## CMake
 
-CMake is a building system for `C` and `C++` that makes adding libraries and compilation so much easier
+CMake is a build system for `C` and `C++` that makes adding libraries and compilation so much easier
 
 There is a lot we can do with CMake but for this tutorial we are just gonna go for the basics
 
@@ -86,7 +86,7 @@ There is a lot we can do with CMake but for this tutorial we are just gonna go f
 
 `CMakePresets.json` lets us quickly change between different compilation presets. For example we may want to have a *release* and *debug* preset that can help us either make our project run fast and optimized or make it easier for our debugger to debug
 
-Here is an example of how `CmakePresets.json` may look like
+Here is an example of how `CMakePresets.json` may look like
 
 ```json
 {
@@ -151,7 +151,7 @@ Here is an example of how `CmakePresets.json` may look like
 
 <Warning>this example expects you to have a mingw compiler installed on windows!</Warning>
 
-Place the `CmakePresets.json` inside your root project folder
+Place the `CMakePresets.json` inside your root project folder
 
 ### CMakeLists.txt
 
@@ -171,7 +171,7 @@ if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 endif()
 
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-  message(FATAL_ERROR "CMAKE_TOOLCHAIN_FILE is not defined. Make sure you specify it with -DCMAKE_TOOLCHAIN_FILE or set it as enviroment variable")
+  message(FATAL_ERROR "CMAKE_TOOLCHAIN_FILE is not defined. Make sure you specify it with -DCMAKE_TOOLCHAIN_FILE or set it as environment variable")
 endif()
 
 # Create our project
@@ -258,7 +258,7 @@ cmake -S . --preset release-windows
 ```
 
 <Note>
-    If you have not set VCPKG as your enviroment variable you will also need to add an argument like `-DCMAKE_TOOLCHAIN_FILE="/PATH/TO/VCPKG/CMAKE/vcpkg.cmake"`
+    If you have not set VCPKG as your environment variable you will also need to add an argument like `-DCMAKE_TOOLCHAIN_FILE="/PATH/TO/VCPKG/CMAKE/vcpkg.cmake"`
 </Note>
 
 And as the last command you just need to run

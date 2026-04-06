@@ -8,9 +8,9 @@
 
 # Creating a window
 
-Now that we have finally made it do `Hello world` we need to focus more on making a window
+Now that we have finally made it to `Hello world` we need to focus more on making a window
 
-To create our window we need to include the libraries we will be using. This means including `<glad/glad.h>` and `<GLFW/glfw3.h>`, where *glfw* will handle the window creation and *glad* will handle working with OpenGL API
+To create our window we need to include the libraries we will be using. This means including `<glad/glad.h>` and `<GLFW/glfw3.h>`, where *glfw* will handle the window creation and *glad* will handle working with the OpenGL API
 
 <Note>
     You need to include `glad.h` before any library that works with OpenGL
@@ -18,7 +18,7 @@ To create our window we need to include the libraries we will be using. This mea
 
 ## GLFW initialization
 
-Before creating a window we need to hint to the GLFW which OpenGL version we will be using
+Before creating a window we need to hint to GLFW which OpenGL version we will be using
 ```cpp
 glfwInit();
 // For OpenGL version 3.3
@@ -68,7 +68,7 @@ We need to tell OpenGL how big is our viewport (in this context window). To do t
 glViewport(0, 0, 800, 600);
 ```
 
-Now of course when the user changes the window size, the glViewport will no longer be accurate. You can notice that by the view visibly stretching in the window. To fix that we can add GLFW a callback on window resize and change the viewport ourselfes like so
+Now of course when the user changes the window size, the glViewport will no longer be accurate. You can notice that by the view visibly stretching in the window. To fix that we can add GLFW a callback on window resize and change the viewport ourselves like so
 
 ```cpp
 void OnWindowResizeCallback(GLFWwindow* window, int newWidth, int newHeight){
@@ -87,7 +87,7 @@ If you run the app at this stage you will notice that everything gets closed alm
 while(!glfwWindowShouldClose(window)){
     // input handling, rendering, ...
 
-    // Swaps the the front and back buffers
+    // Swaps the front and back buffers
     glfwSwapBuffers(window);
 
     // Updates the window state with any events that were triggered like mouse movement or keyboard input
@@ -101,7 +101,7 @@ Our window came with two frame buffers that store what is rendered onto our scre
 
 ## Rendering a color
 
-When starting to render a new frame we are effectively writing on our previous front buffer. This buffer will still have the data from our previous frame which can be an issue for us. If we want to fill the entire window using a single color we need to first set what RGBA value are we going to use
+When starting to render a new frame we are effectively writing on our previous front buffer. This buffer will still have the data from our previous frame which can be an issue for us. If we want to fill the entire window using a single color we need to first set what RGBA value we are going to use
 
 ```cpp
 glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
