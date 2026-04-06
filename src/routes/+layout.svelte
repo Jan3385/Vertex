@@ -92,7 +92,7 @@
   </header>
 
   <!-- Left sidebar -->
-  <div class="flex h-screen overflow-hidden bg-zinc-950">
+  <div class="flex flex-1 overflow-hidden bg-zinc-950">
     <aside class="w-64 border-r border-violet-800 bg-zinc-900 p-6 shrink-0">
       <nav class="flex flex-col gap-2">
         {#each docLinks as link (link.href)}
@@ -110,13 +110,13 @@
     </aside>
   
     <!-- Main content -->
-    <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar">
+    <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar scroll-smooth">
       {@render children()}
     </main>
   
     <!-- Right sidebar -->
     {#if headings.length > 0}
-      <aside class="w-52 shrink-0 border-l border-violet-900 bg-zinc-900 p-4 sticky top-0 h-screen overflow-auto">
+      <aside class="w-52 h-full shrink-0 border-l border-violet-900 bg-zinc-900 p-4 sticky top-0 overflow-auto">
         <p class="select-none text-xs text-center font-bold font-mono uppercase text-violet-400 mb-3">On this page</p>
         <nav class="flex flex-col gap-1">
           {#each headings as heading (heading.id)}
