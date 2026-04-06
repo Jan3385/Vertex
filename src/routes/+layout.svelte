@@ -79,46 +79,57 @@
   });
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+  <title>Vertex: { docLinks.find((link) => link.href === page.url.pathname)?.label || 'Docs'}</title>
+  <link rel="icon" href={favicon} />
+</svelte:head>
 
-<!-- Left sidebar -->
-<div class="flex h-screen overflow-hidden bg-zinc-950">
-  <aside class="w-64 border-r border-violet-800 bg-zinc-900 p-6 shrink-0">
-    <nav class="flex flex-col gap-2">
-      {#each docLinks as link (link.href)}
-        <a
-          href={link.href}
-          class={GetClassFromLevel(link.level)}
-          class:font-bold={link.href === page.url.pathname}
-          class:text-white={link.href === page.url.pathname}
-          class:border-transparent={link.href !== page.url.pathname}
-        >
-          {link.label}
-        </a>
-      {/each}
-    </nav>
-  </aside>
+<div class="flex flex-col h-screen overflow-hidden bg-zinc-950">
+  <!-- Header -->
+  <header class="shrink-0 h-14 border-b border-violet-800 bg-zinc-900 flex items-center px-6">
+    <h1 class="text-lg font-bold text-violet-400 font-mono">Vertex</h1>
 
-  <!-- Main content -->
-  <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar">
-    {@render children()}
-  </main>
+  </header>
 
-  <!-- Right sidebar -->
-  {#if headings.length > 0}
-    <aside class="w-52 shrink-0 border-l border-violet-900 bg-zinc-900 p-4 sticky top-0 h-screen overflow-auto">
-      <p class="select-none text-xs text-center font-bold font-mono uppercase text-violet-400 mb-3">On this page</p>
-      <nav class="flex flex-col gap-1">
-        {#each headings as heading (heading.id)}
+  <!-- Left sidebar -->
+  <div class="flex h-screen overflow-hidden bg-zinc-950">
+    <aside class="w-64 border-r border-violet-800 bg-zinc-900 p-6 shrink-0">
+      <nav class="flex flex-col gap-2">
+        {#each docLinks as link (link.href)}
           <a
-            href="#{heading.id}"
-            class="border-l font-mono text-sm hover:text-zinc-100 transition-colors duration-250 py-1 {activeId === heading.id ? 'text-violet-400 font-bold border-white' : 'text-zinc-400 border-zinc-700'}"
-            style="padding-left: {(heading.level) * 12}px"
+            href={link.href}
+            class={GetClassFromLevel(link.level)}
+            class:font-bold={link.href === page.url.pathname}
+            class:text-white={link.href === page.url.pathname}
+            class:border-transparent={link.href !== page.url.pathname}
           >
-            {heading.text}
+            {link.label}
           </a>
         {/each}
       </nav>
     </aside>
-  {/if}
+  
+    <!-- Main content -->
+    <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar">
+      {@render children()}
+    </main>
+  
+    <!-- Right sidebar -->
+    {#if headings.length > 0}
+      <aside class="w-52 shrink-0 border-l border-violet-900 bg-zinc-900 p-4 sticky top-0 h-screen overflow-auto">
+        <p class="select-none text-xs text-center font-bold font-mono uppercase text-violet-400 mb-3">On this page</p>
+        <nav class="flex flex-col gap-1">
+          {#each headings as heading (heading.id)}
+            <a
+              href="#{heading.id}"
+              class="border-l font-mono text-sm hover:text-zinc-100 transition-colors duration-250 py-1 {activeId === heading.id ? 'text-violet-400 font-bold border-white' : 'text-zinc-400 border-zinc-700'}"
+              style="padding-left: {(heading.level) * 12}px"
+            >
+              {heading.text}
+            </a>
+          {/each}
+        </nav>
+      </aside>
+    {/if}
+  </div>
 </div>

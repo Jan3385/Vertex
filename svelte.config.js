@@ -8,7 +8,7 @@ import { createHighlighter } from 'shiki';
 
 const codeHighlighter = await createHighlighter({
 	themes: ['github-dark'],
-	langs: ['bash', 'glsl', 'cpp', 'c']
+	langs: ['bash', 'glsl', 'cpp', 'c', 'rust', 'javascript', 'java']
 })
 
 /** @type {import('@sveltejs/kit').Config} */

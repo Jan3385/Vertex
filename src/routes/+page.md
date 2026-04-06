@@ -1,84 +1,96 @@
-# Intro
-haha intro :P
+# About this guide
 
-.
+This guide will be using **OpeGL** with **C++**, **GLFW**, **GLAD** and **GLM**. If you don't know any of the stuff its fine as we will be learning about each of them separately
 
-.
+If you are planning to use C++ you should follow the [setup guide](/setup) to create your project
 
-.
+## Do I need to use C++?
 
-.
+No! OpenGL has been ported over to so many languages that there is a very big chance that it will work even on your preferred language. If you do not see your preffered language in the following examples it does not mean it does not have an OpenGL port. Look up if your language allows using the OpenGL API!
 
-.
+### Differences
 
+Here is a little script for creating a vertex array buffer in different languages so you can see the similarities
+
+Notice how all OpenGL functions keep the same name across all the programming languages
+
+#### C++
 ```cpp
-// A little script to make my grandma proud
-#include <iostream>
+GLfloat vertices[] = {
+    -0.5f, -0.5f, 0.0f,
+     0.5f, -0.5f, 0.0f,
+     0.0f,  0.5f, 0.0f
+};
 
-void main(){
-    std::cout << "Wow, its almost like printf but not!" << std::endl;
-}
+GLuint VBO;
+glGenBuffers(1, &VBO);
+glBindBuffer(GL_ARRAY_BUFFER, VBO);
+glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 ```
 
-.
+#### Javascript
+```javascript
+const vertices = new Float32Array([
+    -0.5, -0.5, 0.0,
+     0.5, -0.5, 0.0,
+     0.0,  0.5, 0.0
+]);
 
-.
+const vbo = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+```
 
-## This is so fun!
+Javascript works a bit differently on the web as it uses WebGL, which runs on older OpenGL version and works with a HTML canvas instead of a window. Same principles still do apply
 
-.
+#### Java
+```java
+float[] vertices = {
+    -0.5f, -0.5f, 0.0f,
+     0.5f, -0.5f, 0.0f,
+     0.0f,  0.5f, 0.0f
+};
 
-.
+int vbo = GL15.glGenBuffers();
+GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
+GL15.glBufferData(GL15.GL_ARRAY_BUFFER,
+    BufferUtils.createFloatBuffer(vertices.length).put(vertices).flip(),
+    GL15.GL_STATIC_DRAW);
+```
 
-.
+## GLFW
 
-.
+GLFW is a `C` library (that also works in `C++`) but most languages have their own reimplementation like Rust's `glfw-rs` or it's build-in like in Java's `LWJGL`
 
-.
+This library allows us to create an OS window with an OpenGL context, handle input, timing, multiple monitors and events. We need it to talk to the OS about our window
 
-.
+It helps us for example create a window like:
+```cpp
+GLFWwindow* window = glfwCreateWindow(800, 600, "My Window", nullptr, nullptr);
 
-.
+// Main game/app loop...
 
-.
+glfwDestroyWindow(window);
+window = nullptr;
+```
 
-.
+## GLAD
 
-.
+GLAD is a loader generator for `C/C++` that generates us OpenGL function pointers at runtime which allows us to actually call the OpenGL API
 
-.
+Each language has their own implementation or has it loaded internaly by the main OpenGL library
 
-.
+## GLM
 
-.
+OpenGL Mathematics is a `C++ only` library that allows us to mirror `GLSL` types line vec3, mat4 etc. directly in C++. Other languages have their own math libraries that fill the same role such as Java's `JOML` or Javascript's `gl-matrix`
 
-.
+It allows us to do things like:
+```cpp
+glm::vec3 up       = glm::vec3(0.0f, 1.0f, 0.0f);
+glm::vec3 position = glm::vec3(0.0f, 0.0f, 3.0f);
 
-.
+// moved up by 5
+position = position * (up * 5.0f)
 
-wow that was a lot of dots!
-
-## Question marks?
-why not!
-?
-
-?
-
-?
-
-?
-
-# Well back to business
-
-A
-B
-
-C
-D
-
-E
-TEST
-
-*BOLD TE*ST
-
-**AAA**AA
+float distance = glm::distance(position, glm::vec3(3.0f, 2.0f, -2.0f))
+```
