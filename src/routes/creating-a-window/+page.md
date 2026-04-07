@@ -125,7 +125,8 @@ glClear(GL_COLOR_BUFFER_BIT);
     glClear will clear any part of the currently bound frame buffer (our window by default). It can clear `GL_COLOR_BUFFER_BIT`, `GL_DEPTH_BUFFER_BIT` and `GL_STENCIL_BUFFER_BIT`. GL_COLOR_BUFFER_BIT represents the visible color part of the frame buffer. The other flags will be explained later on
 </Note>
 
-Our final result will look like this
+Our final result will look like this (a single color across the entire screen)
+
 <GLCanvas sketch={example}/>
 
 ### Not clearing the color buffer
