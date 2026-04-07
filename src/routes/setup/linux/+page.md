@@ -6,7 +6,7 @@
 
 On Linux there are multiple types of window protocols. We need to provide our GLFW the libraries that are needed to run on our specific window protocol
 
-To do that we need to check if our system has wayland or X11 installed and if so, fetch their libraries. This can be done by insterting the following example after `add_executable(MyProject ...)` and before `target_link_libraries(MyProject ...)`
+To do that we need to check if our system has wayland or X11 installed and if so, fetch their libraries. This can be done by inserting the following example after `add_executable(MyProject ...)` and before `target_link_libraries(MyProject ...)`
 
 ```cmake
 # Only run this code on Linux

@@ -10,7 +10,7 @@
 
 This guide will be using **OpenGL** with **C++**, **GLFW**, **GLAD** and **GLM**. If you don't know any of the stuff it's fine as we will be learning about each of them separately. This guide will help you go from knowing absolutely nothing to making your own 3D spinning cube
 
-If you are planning to use C++ you should follow the [setup guide](/setup) to create your project
+If you are planning to use C++ you should follow the [setup guide](/setup/) to create your project
 
 If you ever need additional resources for learning OpenGL [learnopengl.com](https://learnopengl.com) is a great place to start
 

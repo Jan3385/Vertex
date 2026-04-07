@@ -9,7 +9,7 @@
 
 <Note>on Linux you may have some issues if using wayland/X11 as it does not like the default glfw library. You would have to modify the CMakeLists.txt a bit for it to work</Note>
 
-Linux CMakeLists.txt setup is shown in [this linux setup guide](/setup/linux)
+Linux CMakeLists.txt setup is shown in [this linux setup guide](/setup/linux/)
 
 [There is an example project](https://github.com/Jan3385/Vertex/tree/main/example-project) in the github for these docs which you can download to have the project already set up. If you plan to just download the template I do still recommend to read this chapter as some apps need to be configured outside of the project
 
