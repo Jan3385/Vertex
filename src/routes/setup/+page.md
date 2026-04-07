@@ -7,7 +7,7 @@
 # Setting up a C++ project with CMAKE
 
 
-<Note>on Linux you may have some issues if using hyprland as it does not like the default glfw library. You would have to modify the CMakeLists.txt a bit for it to work</Note>
+<Note>on Linux you may have some issues if using wayland/X11 as it does not like the default glfw library. You would have to modify the CMakeLists.txt a bit for it to work. This is show in [this setup tutorial](/setup/linux)</Note>
 
 [There is an example project](https://github.com/Jan3385/Vertex/tree/main/example-project) in the github for these docs which you can download to have the project already set up. If you plan to just download the template I do still recommend to read this chapter as some apps need to be configured outside of the project
 
