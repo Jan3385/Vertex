@@ -40,11 +40,14 @@ Now we are finally able to create a window
 const unsigned int width  = 800;
 const unsigned int height = 600;
 const char* windowTitle = "My First Window!";
+
 GLFWwindow* window = glfwCreateWindow(width, height, windowTitle, nullptr, nullptr);
+
 if(window == nullptr){
     // error
     return;
 }
+
 glfwMakeContextCurrent(window);
 ```
 
@@ -53,8 +56,7 @@ glfwMakeContextCurrent(window);
 Before we use any OpenGL functions we need to tell GLAD to start managing all OpenGL function pointers
 
 ```cpp
-if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-{
+if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
     // error
     return;
 }   
@@ -68,7 +70,7 @@ We need to tell OpenGL how big is our viewport (in this context window). To do t
 glViewport(0, 0, 800, 600);
 ```
 
-Now of course when the user changes the window size, the glViewport will no longer be accurate. You can notice that by the view visibly stretching in the window. To fix that we can add GLFW a callback on window resize and change the viewport ourselves like so
+Now of course when the user changes the window size, the glViewport will no longer be accurate. You would notice that by the viewport visibly stretching in the window. To fix that we can add GLFW a callback on window resize and change the viewport ourselves like so
 
 ```cpp
 void OnWindowResizeCallback(GLFWwindow* window, int newWidth, int newHeight){

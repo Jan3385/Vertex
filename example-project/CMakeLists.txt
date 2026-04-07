@@ -52,6 +52,24 @@ find_package(glm CONFIG REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 
+# Linux specific dependencies
+if(UNIX AND NOT APPLE)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(WAYLAND wayland-client wayland-egl)
+    find_package(X11)
+
+    if(WAYLAND_FOUND)
+        target_include_directories(MyProject PRIVATE ${WAYLAND_INCLUDE_DIRS})
+        target_link_libraries(MyProject PRIVATE ${WAYLAND_LIBRARIES})
+    endif()
+
+    if(X11_FOUND)
+        target_link_libraries(MyProject PRIVATE ${X11_LIBRARIES})
+    endif()
+
+    target_link_libraries(MyProject PRIVATE dl pthread)
+endif()
+
 # Put packages into our project
 target_link_libraries(MyProject
   PRIVATE
