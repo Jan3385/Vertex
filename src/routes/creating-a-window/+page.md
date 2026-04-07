@@ -101,7 +101,7 @@ while(!glfwWindowShouldClose(window)){
 
 Our window came with two frame buffers that store what is rendered onto our screen. Drawing and displaying the same frame buffer would result in flickering and artifacts. To prevent that we only see our front buffer. This is the buffer we already drew on which has the fully rendered scene. Meanwhile our back buffer is being actively drawn on by our shader programs. At the end of each frame we just swap the front and back buffers and start rendering on the other buffer using `glSwapBuffers`
 
-![Frame buffers swapping](/images/framebuffer-swap.webp)
+![Frame buffers swapping](../images/framebuffer-swap.webp)
 
 ## Rendering a color
 
@@ -133,7 +133,7 @@ Our final result will look like this (a single color across the entire screen)
 
 We do not have to clear the color buffer. Doing so will keep the "garbage" image in the current frame. If we can guarantee that we will write to the entire buffer, this is not an issue, as each pixel will be overridden anyway. If there is any area in the viewport where nothing is rendered, the previous frame will "bleed" into the current viewport. This is a well-known phenomenon that can be seen, for example, in Valve Source engine games when the camera goes out of bounds
 
-![Half-Life out of bounds screenshot](/images/uncleared-color-bit.webp)
+![Half-Life out of bounds screenshot](../images/uncleared-color-bit.webp)
 
 In this screenshot from Half-Life, we can see previous frames entering the viewport because, out of bounds, there is nothing rendered to clear it
 
