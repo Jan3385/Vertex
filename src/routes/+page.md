@@ -104,7 +104,8 @@ glm::vec3 up       = glm::vec3(0.0f, 1.0f, 0.0f);
 glm::vec3 position = glm::vec3(0.0f, 0.0f, 3.0f);
 
 // moved up by 5
-position = position * (up * 5.0f);
+position = position + (up * 5.0f);
 
+// get distance between position and (3.0, 2.0, -2.0)
 float distance = glm::distance(position, glm::vec3(3.0f, 2.0f, -2.0f));
 ```

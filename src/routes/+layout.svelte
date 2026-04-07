@@ -22,7 +22,7 @@
     const classBase = 'rounded py-1.5 font-mono hover:bg-zinc-700 border-l-4 ';
     switch (level) {
       case 0:
-        return classBase + 'text-violet-400 px-3 underline';
+        return classBase + 'text-violet-300 px-3 font-bold';
       case 1:
         return classBase + 'text-violet-300 px-7 text-sm';
       case 2:
@@ -132,8 +132,8 @@
           {#each headings as heading (heading.id)}
             <a
               href="#{heading.id}"
-              class="border-l font-mono text-sm hover:text-zinc-100 transition-colors duration-250 py-1 {activeId === heading.id ? 'text-violet-400 font-bold border-white' : 'text-zinc-400 border-zinc-700'}"
-              style="padding-left: {(heading.level) * 12}px"
+              class="border-l font-mono hover:text-zinc-100 transition-colors duration-250 py-1 {activeId === heading.id ? 'text-violet-400 font-bold border-white' : 'text-zinc-400 border-zinc-700'}"
+              style="padding-left: {(heading.level) * 12}px; font-size: {100 - (heading.level) * 6}%"
             >
               {heading.text}
             </a>
