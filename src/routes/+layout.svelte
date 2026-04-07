@@ -4,7 +4,7 @@
   import { afterNavigate } from '$app/navigation';
 
   import './layout.css';
-  import favicon from '$lib/assets/favicon.svg';
+  import favicon from '$lib/assets/logo.svg';
 
   let { children } = $props();
 
@@ -98,6 +98,7 @@
 <div class="flex flex-col h-screen overflow-hidden bg-zinc-950">
   <!-- Header -->
   <header class="shrink-0 h-14 border-b border-violet-800 bg-zinc-900 flex items-center px-6">
+    <img src={favicon} alt="Vertex Logo" class="w-8 h-8 mr-3" />
     <h1 class="text-lg font-bold text-violet-400 font-mono select-none">Vertex - YSWS guide</h1>
   </header>
 
