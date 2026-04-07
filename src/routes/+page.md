@@ -74,7 +74,7 @@ GL15.glBufferData(GL15.GL_ARRAY_BUFFER,
 
 ## GLFW
 
-GLFW is a `C` library (that also works in `C++`) but most languages have their own reimplementation like Rust's `glfw-rs` or it's built-in like in Java's `LWJGL`
+GLFW is a `C` library (that also works in `C++`) but most languages have their own re-implementation like Rust's `glfw-rs` or it's built-in like in Java's `LWJGL`
 
 This library allows us to create an OS window with an OpenGL context, handle input, timing, multiple monitors and events. We need it to talk to the OS about our window
 
@@ -92,7 +92,7 @@ window = nullptr;
 
 GLAD is a loader generator for `C/C++` that generates us OpenGL function pointers at runtime which allows us to actually call the OpenGL API
 
-Each language has their own implementation or has it loaded internaly by the main OpenGL library
+Each language has their own implementation or has it loaded internally by the main OpenGL library
 
 ## GLM
 
