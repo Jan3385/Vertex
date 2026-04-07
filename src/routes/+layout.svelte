@@ -12,10 +12,10 @@
 
   const docLinks = [
     { href: resolve('/'),                  label: 'Getting Started', level: 0 },
-    { href: resolve('/setup'),             label: 'Setup', level: 1 },
-    { href: resolve('/setup/linux'),       label: 'Linux specific CMake', level: 2 },
-    { href: resolve('/creating-a-window'), label: 'Creating a Window', level: 1 },
-    { href: resolve('/my-first-triangle'), label: 'My First Triangle', level: 0 },
+    { href: resolve('/setup/'),             label: 'Setup', level: 1 },
+    { href: resolve('/setup/linux/'),       label: 'Linux specific CMake', level: 2 },
+    { href: resolve('/creating-a-window/'), label: 'Creating a Window', level: 1 },
+    { href: resolve('/my-first-triangle/'), label: 'My First Triangle', level: 0 },
   ] as const;
 
   function GetClassFromLevel(level: number) {

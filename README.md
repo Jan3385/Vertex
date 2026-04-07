@@ -8,6 +8,14 @@ It is a collection of information I collected on my journey thanks to sites like
 
 To install all modules needed run `npm install`
 
-Then to start the project run `npm run dev`
+### Running dev build
+
+To start the project run `npm run dev`
 
 Afterwards the website should be running at `http://localhost:5173` (as shown in your console)
+
+### Running a precompiled build
+
+To compile the project run `npm run build`
+
+Afterwards open the build as a static server by using for example `npx serve build`
