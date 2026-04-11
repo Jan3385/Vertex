@@ -139,7 +139,8 @@ We do not have to clear the color buffer. Doing so will keep the "garbage" image
 
 In this screenshot from Half-Life, we can see previous frames entering the viewport because, out of bounds, there is nothing rendered to clear it
 
-The example below should display the difference between clearing and not clearing nicely
+<div style="background-color: #211832; border-radius: 8px; padding: 8px">
+<center>The example below should display the difference between clearing and not clearing nicely</center>
 
 <div style="display: flex; gap: 1rem; justify-content: center;">
     <div style="justify-content: center; width: 100px;">
@@ -148,6 +149,7 @@ The example below should display the difference between clearing and not clearin
     <div style="justify-content: center; width: 100px;">
         <GLCanvas sketch={triangleNoClear}/>
     </div>
+</div>
 </div>
 
 ## Handling input
