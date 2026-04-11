@@ -142,7 +142,7 @@ In this screenshot from Half-Life, we can see previous frames entering the viewp
 <div style="background-color: #211832; border-radius: 8px; padding: 8px">
 <center>The example below should display the difference between clearing and not clearing nicely</center>
 
-<div style="display: flex; gap: 1rem; justify-content: center;">
+<div style="display: flex; gap: 1rem; justify-content: center; margin: 12px;">
     <div style="justify-content: center; width: 100px;">
         <GLCanvas sketch={triangle}/>
     </div>
@@ -150,6 +150,8 @@ In this screenshot from Half-Life, we can see previous frames entering the viewp
         <GLCanvas sketch={triangleNoClear}/>
     </div>
 </div>
+
+<center>It is possible that your browser is clearing the buffer automatically. If you do not see expected results try a different browser</center>
 </div>
 
 ## Handling input
