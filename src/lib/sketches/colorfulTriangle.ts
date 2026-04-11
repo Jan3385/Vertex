@@ -1,6 +1,8 @@
 import * as glUtils from './glUtils';
 
 export default function colorfulTriangle(canvas: HTMLCanvasElement) {
+  let running = true;
+
   const gl = canvas.getContext('webgl2')!;
 
   // setup
@@ -53,6 +55,8 @@ export default function colorfulTriangle(canvas: HTMLCanvasElement) {
 
 
   function render() {
+    if (!running) return;
+
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -63,6 +67,10 @@ export default function colorfulTriangle(canvas: HTMLCanvasElement) {
   render();
 
   return () => {
+    running = false;
+
     // cleanup
+    gl.deleteBuffer(vertexBuffer);
+    gl.deleteProgram(shaderProgram);
   };
 }

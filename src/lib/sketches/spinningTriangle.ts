@@ -1,7 +1,9 @@
 import * as glUtils from './glUtils';
-import { mat4 } from 'gl-matrix';
+import { mat4, vec3 } from 'gl-matrix';
 
 export default function triangle(canvas: HTMLCanvasElement) {
+  let running = true;
+
   const gl = canvas.getContext('webgl2')!;
 
   // setup
@@ -30,8 +32,10 @@ export default function triangle(canvas: HTMLCanvasElement) {
   precision mediump float;
   out vec4 fragColor;
 
+  uniform vec3 uColor;
+
   void main() {
-    fragColor = vec4(1.0, 0.5, 0.2, 1.0);
+    fragColor = vec4(uColor, 1.0);
   }
   `;
   const shaderProgram = glUtils.CreateShaderProgram(gl, vertexShaderSource, fragmentShaderSource);
@@ -46,16 +50,29 @@ export default function triangle(canvas: HTMLCanvasElement) {
   gl.enableVertexAttribArray(0);
 
   let rotationMatrix = mat4.create();
+  const color = vec3.fromValues(1.0, 0.5, 0.2);
+  let frameCounter = 0;
   let angle = 0;
 
+  const uRotationLocation = gl.getUniformLocation(shaderProgram!, 'uRotation');
+  const uColorLocation = gl.getUniformLocation(shaderProgram!, 'uColor');
+
   function render() {
+    if (!running) return;
+
+    frameCounter++;
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     angle += 0.03;
-    rotationMatrix = mat4.fromRotation(rotationMatrix, angle, [0, 1, 0.4]);
+    rotationMatrix = mat4.fromRotation(rotationMatrix, angle, [0.1, 1, 0.4]);
 
-    const uRotationLocation = gl.getUniformLocation(shaderProgram!, 'uRotation');
     gl.uniformMatrix4fv(uRotationLocation, false, rotationMatrix);
+
+    gl.uniform3f(uColorLocation, color[0], color[1], color[2]);
+    const time = frameCounter * 0.01;
+    color[0] = (Math.sin(time) * 0.5 + 0.5);
+    color[1] = (Math.sin(time + 2.0) * 0.5 + 0.5);
+    color[2] = (Math.sin(time + 4.0) * 0.5 + 0.5);
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
@@ -65,6 +82,8 @@ export default function triangle(canvas: HTMLCanvasElement) {
   render();
 
   return () => {
+    running = false;
+
     // cleanup
     gl.deleteBuffer(vertexBuffer);
     gl.deleteProgram(shaderProgram);

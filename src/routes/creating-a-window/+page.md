@@ -1,6 +1,8 @@
 <script>
   import GLCanvas from '$lib/components/GLCanvas.svelte';
   import example from '$lib/sketches/example.ts'
+  import triangle from '$lib/sketches/spinningTriangle.ts'
+  import triangleNoClear from '$lib/sketches/spinningTriangleNoClear.ts'
 
   import Note from '$lib/components/Note.svelte';
   import Warning from '$lib/components/Warning.svelte';
@@ -136,6 +138,17 @@ We do not have to clear the color buffer. Doing so will keep the "garbage" image
 ![Half-Life out of bounds screenshot](../images/uncleared-color-bit.webp)
 
 In this screenshot from Half-Life, we can see previous frames entering the viewport because, out of bounds, there is nothing rendered to clear it
+
+The example below should display the difference between clearing and not clearing nicely
+
+<div style="display: flex; gap: 1rem; justify-content: center;">
+    <div style="justify-content: center; width: 100px;">
+        <GLCanvas sketch={triangle}/>
+    </div>
+    <div style="justify-content: center; width: 100px;">
+        <GLCanvas sketch={triangleNoClear}/>
+    </div>
+</div>
 
 ## Handling input
 
