@@ -133,7 +133,9 @@
           {#each headings as heading (heading.id)}
             <a
               href="#{heading.id}"
-              class="border-l font-mono hover:text-zinc-100 transition-colors duration-250 py-1 {activeId === heading.id ? 'text-violet-400 font-bold border-white' : 'text-zinc-400 border-zinc-700'}"
+              class="border-l font-mono hover:text-zinc-100 transition-colors duration-250 py-1
+                {activeId === heading.id ? 'text-violet-400 font-bold border-white' : 'text-zinc-400 border-zinc-700'}
+                {heading.level === 1 ? 'font-bold' : ''}"
               style="padding-left: {(heading.level) * 12}px; font-size: {100 - (heading.level) * 6}%"
             >
               {heading.text}

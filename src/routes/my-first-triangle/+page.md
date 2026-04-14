@@ -10,6 +10,8 @@
 
 # Theory
 
+<hr>
+
 ## OpenGL
 
 ...
@@ -35,6 +37,8 @@
 ...
 
 # Rendering
+
+<hr>
 
 To render our first triangle we must create an array of vertices representing our shape. A simple triangle may look like the following
 
