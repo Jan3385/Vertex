@@ -30,7 +30,11 @@ const config = {
 						.replace(/{/g, '&#123;')
 						.replace(/}/g, '&#125;');
 
-					return html;
+					const label = lang ? `<div class="code-label">${lang}</div>` : '';
+
+					const wrapper = `<div class="code-wrapper">${label}${html}</div>`;
+
+					return wrapper;
 				}
 			}
 	})],

@@ -19,7 +19,7 @@
   ] as const;
 
   function GetClassFromLevel(level: number) {
-    const classBase = 'rounded py-1.5 font-mono hover:bg-zinc-700 border-l-4 ';
+    const classBase = 'rounded py-1.5 pr-0 font-mono hover:bg-zinc-700 border-l-4 transition-colors duration-250 ';
     switch (level) {
       case 0:
         return classBase + 'text-violet-300 px-3 font-bold';
@@ -104,7 +104,7 @@
 
   <!-- Left sidebar -->
   <div class="flex flex-1 overflow-hidden bg-zinc-950">
-    <aside class="w-64 border-r border-violet-800 bg-zinc-900 p-6 shrink-0">
+    <aside class="min-w-45 border-r border-violet-800 bg-zinc-900 p-6 shrink-0" style="width: 15svw;">
       <nav class="flex flex-col gap-2">
         {#each docLinks as link (link.href)}
           <a
