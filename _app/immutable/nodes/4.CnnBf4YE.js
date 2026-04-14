@@ -1,4 +1,4 @@
-import"../chunks/DsnmJJEf.js";import{m as o,f,g as n,j as m,w as t,x as l}from"../chunks/D_9WaUQ2.js";import{C as w,G as b}from"../chunks/D8BhIv7J.js";import{N as p}from"../chunks/bZIZMoq3.js";function F(u){let i=!0;const e=u.getContext("webgl2");e.clearColor(.1,.2,.3,1);const h=new Float32Array([-.5,-.5,0,.5,-.5,0,0,.5,0]),c=e.createBuffer();e.bindBuffer(e.ARRAY_BUFFER,c),e.bufferData(e.ARRAY_BUFFER,h,e.STATIC_DRAW);const r=w(e,`#version 300 es
+import"../chunks/DsnmJJEf.js";import{m as o,f,g as n,j as m,w as t,x as l}from"../chunks/D_9WaUQ2.js";import{C as w,G as b}from"../chunks/C_nVpZx7.js";import{N as p}from"../chunks/bZIZMoq3.js";function F(u){let i=!0;const e=u.getContext("webgl2");e.clearColor(.1,.2,.3,1);const h=new Float32Array([-.5,-.5,0,.5,-.5,0,0,.5,0]),c=e.createBuffer();e.bindBuffer(e.ARRAY_BUFFER,c),e.bufferData(e.ARRAY_BUFFER,h,e.STATIC_DRAW);const r=w(e,`#version 300 es
   in vec3 aPosition;
 
   void main() {
