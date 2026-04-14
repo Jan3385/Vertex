@@ -82,12 +82,22 @@
       els.forEach((el) => observer!.observe(el));
     }, 50);
 
+    SetLeftSidebar(false);
+
     return () => observer?.disconnect();
   });
 
   afterNavigate(() => {
     mainElement.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  let leftOpen = $state(false);
+  function ToggleLeftSidebar() {
+    leftOpen = !leftOpen;
+  }
+  function SetLeftSidebar(open: boolean) {
+    leftOpen = open;
+  }
 </script>
 
 <svelte:head>
@@ -95,16 +105,24 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
+{#if leftOpen}
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <div class="backdrop fixed inset-0 z-50" onclick={SetLeftSidebar.bind(null, false)}></div>
+{/if}
+
 <div class="flex flex-col h-screen overflow-hidden bg-zinc-950">
   <!-- Header -->
   <header class="shrink-0 h-14 border-b border-violet-800 bg-zinc-900 flex items-center px-6">
     <img src={favicon} alt="Vertex Logo" class="w-8 h-8 mr-3" />
     <h1 class="text-lg font-bold text-violet-400 font-mono select-none">Vertex - YSWS guide</h1>
+
+    <button class="hamburger" onclick={ToggleLeftSidebar} aria-label="Toggle navigation">☰</button>
   </header>
 
   <div class="flex flex-1 overflow-hidden bg-zinc-950">
     <!-- Left sidebar -->
-    <aside class="min-w-45 border-r border-violet-800 bg-zinc-900 p-6 shrink-0 overflow-auto no-scrollbar" style="width: 15svw;">
+    <aside class="left-sidebar min-w-45 border-r border-violet-800 bg-zinc-900 p-6 shrink-0 overflow-auto no-scrollbar" class:open={leftOpen} style="width: 15svw;">
       <nav class="flex flex-col gap-2">
         {#each docLinks as link (link.href)}
           <a
@@ -121,13 +139,13 @@
     </aside>
   
     <!-- Main content -->
-    <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto scroll-smooth dark-scrollbar" bind:this={mainElement}>
+    <main class="main-content flex-1 p-8 prose prose-invert font-mono max-w-none overflow-y-auto overflow-x-clip scroll-smooth dark-scrollbar" bind:this={mainElement}>
       {@render children()}
     </main>
   
     <!-- Right sidebar -->
     {#if headings.length > 0}
-      <aside class="w-52 h-full shrink-0 border-l border-violet-900 bg-zinc-900 p-4 sticky top-0 overflow-auto no-scrollbar">
+      <aside class="right-sidebar w-52 h-full shrink-0 border-l border-violet-900 bg-zinc-900 p-4 sticky top-0 overflow-auto no-scrollbar">
         <p class="select-none text-xs text-center font-bold font-mono uppercase text-violet-400 mb-3">On this page</p>
         <nav class="flex flex-col gap-1">
           {#each headings as heading (heading.id)}
