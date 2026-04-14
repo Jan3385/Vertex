@@ -6,8 +6,6 @@
   import Warning from '$lib/components/Warning.svelte';
 </script>
 
-# Large portion of this page is WIP
-
 # Theory
 
 <hr>
