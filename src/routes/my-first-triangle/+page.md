@@ -14,27 +14,83 @@
 
 ## OpenGL
 
-...
+OpenGL needs us to provide it with some information for it on how to render stuff for us to a framebuffer. It needs 3 main things which are the vertices and additional data on what to render *(a buffer object)*, a place that knows what buffers we are going to use and how *(a vertex array object)*, and some code on how to process that data into an image *(a shader program)* 
 
 ## Buffers
 
-...
+Buffers are a place to store things on the GPU. CPU and GPU do not share the same memory (CPU RAM vs GPU VRAM). With buffers we can set and update the GPU memory which we then use to render things to our screen. We can freely send and receive data between the CPU and GPU but the process is very slow. Because of that we should limit the amount of reading/writing between the CPU and GPU as much as possible
+
+The GPU can have multiple parts of VRAM optimized for different tasks. Most common example is the *static*, *dynamic* and *stream* memory. **Static** is optimized for rare or one-time writes where as **dynamic** is optimized for a lot of writes/reads in a short amount of time. The **stream** memory is not as common but it serves us in case we are planning to do a rare or one-time write and the GPU will use the passed data just a few times before being deleted
+
+We can bind the buffer to multiple types of targets. These are
+ - **GL_ARRAY_BUFFER** - Used to store vertex attributes like positions, normals,...
+ - **GL_ELEMENT_ARRAY_BUFFER** - Holds indices that reference vertex data (this will be used and explained later on)
+ - **GL_SHADER_STORAGE_BUFFER** - A large general-purpose buffer for shaders
+ - **GL_UNIFORM_BUFFER** - Holds uniform data (constants) that can be shared across multiple shaders and draw calls
+ - **GL_COPY_READ_BUFFER** - When copying data between shaders used as source
+ - **GL_COPY_WRITE_BUFFER** - When copying data between shaders used as destination
 
 ### Binding
 
-...
+When working with buffers (and other OpenGL objects like textures etc.) we usually bind them before working with them. The workflow looks like this
+
+```cpp
+// GLuint bufferID = ...;
+
+glBindBuffer(GL_ARRAY_BUFFER, bufferID);
+```
+
+This will "bind" the buffer represented by `bufferID` to `GL_ARRAY_BUFFER`. This means that from now on anytime we reference `GL_ARRAY_BUFFER` we are going to be referencing the buffer represented by `bufferID`
+
+```cpp
+glBufferData(GL_ARRAY_BUFFER, ..., ..., ...);
+```
+
+Now we are doing some operation with a buffer. Rather than passing `bufferID` anywhere we are instead telling OpenGL that the buffer we want to work with is bound to `GL_ARRAY_BUFFER`
+
+After we are done with the buffer we should (but don't have to) unbind it
+
+```cpp
+glBindBuffer(GL_ARRAY_BUFFER, 0);
+```
+
+This can be done by binding a `0` to that specific buffer. Now any operation with `GL_ARRAY_BUFFER` will fail and give an error instead of the alternative of changing our buffer somewhere where we don't want to. If we do not unbind our buffers it can be very difficult to debug where and why is our buffer changing as it can be in a part of code which has nothing to do with our buffer 
 
 ## Shaders
 
-...
+Shaders are an OpenGL object that holds our `GLSL` code. Our code starts as a text string that then gets compiled into several shaders based on their purpose and then connects them as a shader program
+
+A shader program is a collection of shaders that defines the "pipeline" on how to work and process input data to pixels on the screen or for a frame buffer
+
+OpenGL has *two* main shaders types, the **vertex shader** and the **fragment shader**. Vertex shader tells us where are we going to be rendering on the screen where as the fragment shader fills a defined region from the vertex shader with color
+
+There are more shader types such as
+ - **Geometry shader** - Can create or discard geometry on the GPU. You can picture it as instead of passing whole triangle vertices to the GPU we just send it individual points where we want our triangles placed and it generates them for us
+ - **Tesselation control shader** - Subdivides geometry
+ - **Tesselation evaluation shader** - Decides the position of vertices after tesselation
+ - **Compute shader** - Is not used for rendering but can be used to compute anything with the power of the GPU
+
+Geometry and tesselation shaders are part of the *primitive assembly process*
+
+These additional shader types are too complicated and not needed for a simple project so we will not be going though them. Any shader type that is worth mentioning is the *geometry shader* as it is not that hard to use and can prove itself very useful
 
 ### Vertex Shader
 
-...
+Vertex shader is at the start of our shader chain and takes in our input data vertices. If we do not want to move them in any way we can just pass them directly to the output but if we have a camera or we want to be able to change the objects position/rotation/scale we can do this during this step
 
 ### Fragment Shader
 
-...
+Before this shader we can put a tesselation and/or geometry shaders that modify our vertex shader output. This can be done for example to increase the level of detail or to automatically generate/modify new geometry on the GPU
+
+Right before running the fragment shader a process called rasterization happens. Rasterization is a process that "selects" all the pixels that are inside the area designated by vertices. The fragment shader then runs for every pixel inside the rasterization zone
+
+Fragment shader colors in the object. If we don't need any special color effects we can just pass a color straight without any modifications but later on we will want to modify the color either with lights, a settable uniform variable etc.
+
+### Shader program
+
+Shader program is the pipeline of shaders used to generate an image. It takes in data from buffer(s) with the help of a vertex array object, processes it and the output is put onto our framebuffer/window
+
+![OpenGL pipeline](../images/OpenGL-Pipeline.png)<sup><a href="https://en.wikibooks.org/wiki/GLSL_Programming/OpenGL_ES_2.0_Pipeline">Image source from WikiBooks.org</a></sup>
 
 # Rendering
 
@@ -70,7 +126,7 @@ To start using our buffer we need to bind it to the correct buffer slot
 glBindBuffer(GL_ARRAY_BUFFER, VBO);
 ```
 
-GL_ARRAY_BUFFER represents the slot our buffer will be slotted in. Some of the other buffer types are GL_ELEMENT_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_UNIFORM_BUFFER
+*GL_ARRAY_BUFFER* represents the slot our buffer will be slotted in. Some of the other buffer types are *GL_ELEMENT_ARRAY_BUFFER*, *GL_ELEMENT_ARRAY_BUFFER*, *GL_UNIFORM_BUFFER*
 
 Now we need to send our CPU data `triangleVertices` to the GPU buffer `VBO`
 
@@ -219,9 +275,10 @@ glDeleteShader(myVertexShader);
 glDeleteShader(myFragmentShader);  
 ```
 
-Right now we have the buffer and shader program ready. The last step is telling OpenGL how the buffer should interact with the shader program
 
 ## Putting it all together
+
+Right now we have the buffer and shader program ready. The last step is telling OpenGL how the buffer should interact with the shader program
 
 ### Telling our buffer how to put data to our shader
 
@@ -248,7 +305,7 @@ glEnableVertexAttribArray(0);
 Now lets talk about what the specific arguments mean
 
 In the first macro the following arguments are
- - Vertex attribute we are modifying (it is the (location = 0) from our vertex shader)
+ - **Vertex attribute** we are modifying (it is the (location = 0) from our vertex shader)
  - The **size** of our attribute. We are using Vec3 for the position of a vertex which is composed from 3 floats
  - What **data type** is the attribute. A Vec3 is made from 3 **floats** so we use `GL_FLOAT`
  - If we want our data to be normalized (meaning transformed into (0; 1) or (-1; 1)). We do not want that for our position data so we set it to `GL_FALSE`
