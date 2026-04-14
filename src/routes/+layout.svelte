@@ -111,7 +111,7 @@
   <div class="backdrop fixed inset-0 z-50" onclick={SetLeftSidebar.bind(null, false)}></div>
 {/if}
 
-<div class="flex flex-col h-screen overflow-hidden bg-zinc-950">
+<div class="flex flex-col h-screen max-h-screen overflow-clip bg-zinc-950">
   <!-- Header -->
   <header class="shrink-0 h-14 border-b border-violet-800 bg-zinc-900 flex items-center px-6">
     <img src={favicon} alt="Vertex Logo" class="w-8 h-8 mr-3" />
