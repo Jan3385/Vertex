@@ -1,35 +1,30 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="text-scale" content="scale" />
-		<link href="./_app/immutable/entry/start.BB3HVlyq.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DAV60aP7.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/Dwb8TVLG.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/D_9WaUQ2.js" rel="modulepreload">
-		<link href="./_app/immutable/entry/app.fmTr0np9.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DsnmJJEf.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/sPXMNfOs.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DfGQkDVS.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CypIttf3.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/0.BOuhpLNi.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CILMl5_n.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DgiQv4hw.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/2.E5V3lImf.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/D8BhIv7J.js" rel="modulepreload">
-		<!--12qhfyh--><link rel="icon" href="data:image/svg+xml,%3csvg%20width='616'%20height='616'%20viewBox='0%200%20616%20616'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20x='0.5'%20y='0.5'%20width='615'%20height='615'%20rx='99.5'%20fill='%231D1B20'%20stroke='black'/%3e%3cline%20x1='120.36'%20y1='211.754'%20x2='342.36'%20y2='73.7536'%20stroke='%236D6476'%20stroke-width='10'/%3e%3cline%20x1='126.501'%20y1='212.431'%20x2='442.501'%20y2='522.431'%20stroke='%236D6476'%20stroke-width='10'/%3e%3cline%20x1='434.107'%20y1='527.027'%20x2='340.107'%20y2='79.0267'%20stroke='%236D6476'%20stroke-width='10'/%3e%3ccircle%20cx='123'%20cy='216'%20r='50'%20fill='%236750A4'/%3e%3ccircle%20cx='439'%20cy='526'%20r='50'%20fill='%236750A4'/%3e%3ccircle%20cx='345'%20cy='78'%20r='50'%20fill='%236750A4'/%3e%3c/svg%3e"/><!----><title>Vertex: Docs</title>
-		<link href="./_app/immutable/assets/0.DDRQBQl2.css" rel="stylesheet">
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[0--><!--[--><div class="flex flex-col h-screen overflow-hidden bg-zinc-950"><header class="shrink-0 h-14 border-b border-violet-800 bg-zinc-900 flex items-center px-6"><img src="data:image/svg+xml,%3csvg%20width='616'%20height='616'%20viewBox='0%200%20616%20616'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20x='0.5'%20y='0.5'%20width='615'%20height='615'%20rx='99.5'%20fill='%231D1B20'%20stroke='black'/%3e%3cline%20x1='120.36'%20y1='211.754'%20x2='342.36'%20y2='73.7536'%20stroke='%236D6476'%20stroke-width='10'/%3e%3cline%20x1='126.501'%20y1='212.431'%20x2='442.501'%20y2='522.431'%20stroke='%236D6476'%20stroke-width='10'/%3e%3cline%20x1='434.107'%20y1='527.027'%20x2='340.107'%20y2='79.0267'%20stroke='%236D6476'%20stroke-width='10'/%3e%3ccircle%20cx='123'%20cy='216'%20r='50'%20fill='%236750A4'/%3e%3ccircle%20cx='439'%20cy='526'%20r='50'%20fill='%236750A4'/%3e%3ccircle%20cx='345'%20cy='78'%20r='50'%20fill='%236750A4'/%3e%3c/svg%3e" alt="Vertex Logo" class="w-8 h-8 mr-3"/> <h1 class="text-lg font-bold text-violet-400 font-mono select-none">Vertex - YSWS guide</h1></header> <div class="flex flex-1 overflow-hidden bg-zinc-950"><aside class="min-w-45 border-r border-violet-800 bg-zinc-900 p-6 shrink-0" style="width: 15svw;"><nav class="flex flex-col gap-2"><!--[--><a href="./" class="rounded py-1.5 pr-0 font-mono hover:bg-zinc-700 border-l-4 transition-colors duration-250 text-violet-300 px-3  border-transparent">Getting Started</a><a href="./setup/" class="rounded py-1.5 pr-0 font-mono hover:bg-zinc-700 border-l-4 transition-colors duration-250 text-violet-300 px-7 text-sm border-transparent">Setup</a><a href="./setup/linux/" class="rounded py-1.5 pr-0 font-mono hover:bg-zinc-700 border-l-4 transition-colors duration-250 text-violet-300 px-11 text-sm border-transparent">Linux specific CMake</a><a href="./creating-a-window/" class="rounded py-1.5 pr-0 font-mono hover:bg-zinc-700 border-l-4 transition-colors duration-250 text-violet-300 px-7 text-sm border-transparent">Creating a Window</a><a href="./my-first-triangle/" class="rounded py-1.5 pr-0 font-mono hover:bg-zinc-700 border-l-4 transition-colors duration-250 text-violet-300 px-3  border-transparent">My First Triangle</a><!--]--></nav></aside> <main class="flex-1 p-8 prose prose-invert font-mono max-w-none overflow-auto no-scrollbar scroll-smooth"><!--[--><h1 id="about-this-guide">About this guide</h1> <p>This guide will be using <strong>OpenGL</strong> with <strong>C++</strong>, <strong>GLFW</strong>, <strong>GLAD</strong> and <strong>GLM</strong>. If you don’t know any of the stuff it’s fine as we will be learning about each of them separately. This guide will help you go from knowing absolutely nothing to making your own 3D spinning cube</p> <p>If you are planning to use C++ you should follow the <a href="/setup/">setup guide</a> to create your project</p> <p>If you ever need additional resources for learning OpenGL <a href="https://learnopengl.com" rel="nofollow">learnopengl.com</a> is a great place to start</p> <p>During this guide you may see canvas elements such as this one:</p> <div style="width: 100px;"><canvas width="100" height="100"></canvas></div><!----> These canvas elements provide you with a live visual feedback of what is being showcased. These canvas elements use WebGL context which is really similar to OpenGL <h2 id="do-i-need-to-use-c">Do I need to use C++?</h2> <p>No! OpenGL has been ported over to so many languages that there is a very big chance that it will work even on your preferred language. If you do not see your preferred language in the following examples it does not mean it does not have an OpenGL port. Look up if your language allows using the OpenGL API!</p> <h3 id="differences">Differences</h3> <p>Here is a little script for creating a vertex array buffer in different languages so you can see the similarities</p> <p>Notice how all OpenGL functions keep the same name across all the programming languages</p> <h4 id="c">C++</h4> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">GLfloat vertices[] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+import"../chunks/DsnmJJEf.js";import{m as t,f as c,g as E,j as i,w as y}from"../chunks/D_9WaUQ2.js";import{C as F,G as d}from"../chunks/D8BhIv7J.js";function f(o){let a=!0;const s=o.getContext("webgl2");s.clearColor(.1,.2,.3,1);const n=.75,r=new Float32Array([n,-n,0,1,0,0,-n,-n,0,0,1,0,0,n,0,0,0,1]),e=s.createBuffer();s.bindBuffer(s.ARRAY_BUFFER,e),s.bufferData(s.ARRAY_BUFFER,r,s.STATIC_DRAW);const l=F(s,`#version 300 es
+  in vec3 aPosition;
+  in vec3 aColor;
+
+  out vec3 vColor;
+
+  void main() {
+    gl_Position = vec4(aPosition, 1.0);
+    vColor = aColor;
+  }
+  `,`#version 300 es
+  precision mediump float;
+  out vec4 fragColor;
+
+  in vec3 vColor;
+
+  void main() {
+    fragColor = vec4(vColor, 1.0);
+  }
+  `);if(!l){console.error("Failed to create shader program");return}s.useProgram(l),s.vertexAttribPointer(0,3,s.FLOAT,!1,6*Float32Array.BYTES_PER_ELEMENT,0),s.enableVertexAttribArray(0),s.vertexAttribPointer(1,3,s.FLOAT,!1,6*Float32Array.BYTES_PER_ELEMENT,3*Float32Array.BYTES_PER_ELEMENT),s.enableVertexAttribArray(1);function p(){a&&(s.clear(s.COLOR_BUFFER_BIT),s.drawArrays(s.TRIANGLES,0,3),requestAnimationFrame(p))}return p(),()=>{a=!1,s.deleteBuffer(e),s.deleteProgram(l)}}var u=i(`<h1 id="about-this-guide">About this guide</h1> <p>This guide will be using <strong>OpenGL</strong> with <strong>C++</strong>, <strong>GLFW</strong>, <strong>GLAD</strong> and <strong>GLM</strong>. If you don’t know any of the stuff it’s fine as we will be learning about each of them separately. This guide will help you go from knowing absolutely nothing to making your own 3D spinning cube</p> <p>If you are planning to use C++ you should follow the <a href="/setup/">setup guide</a> to create your project</p> <p>If you ever need additional resources for learning OpenGL <a href="https://learnopengl.com" rel="nofollow">learnopengl.com</a> is a great place to start</p> <p>During this guide you may see canvas elements such as this one:</p> <!> These canvas elements provide you with a live visual feedback of what is being showcased. These canvas elements use WebGL context which is really similar to OpenGL <h2 id="do-i-need-to-use-c">Do I need to use C++?</h2> <p>No! OpenGL has been ported over to so many languages that there is a very big chance that it will work even on your preferred language. If you do not see your preferred language in the following examples it does not mean it does not have an OpenGL port. Look up if your language allows using the OpenGL API!</p> <h3 id="differences">Differences</h3> <p>Here is a little script for creating a vertex array buffer in different languages so you can see the similarities</p> <p>Notice how all OpenGL functions keep the same name across all the programming languages</p> <h4 id="c">C++</h4> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">GLfloat vertices[] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> &#123;</span></span>
 <span class="line"><span style="color:#F97583">    -</span><span style="color:#79B8FF">0.5</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#79B8FF">     0.5</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#79B8FF">     0.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">,  </span><span style="color:#79B8FF">0.5</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.0</span><span style="color:#F97583">f</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#E1E4E8">&#125;;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">GLuint VBO;</span></span>
-<span class="line"><span style="color:#B392F0">glGenBuffers</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">VBO);</span></span>
+<span class="line"><span style="color:#B392F0">glGenBuffers</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8">VBO);</span></span>
 <span class="line"><span style="color:#B392F0">glBindBuffer</span><span style="color:#E1E4E8">(GL_ARRAY_BUFFER, VBO);</span></span>
 <span class="line"><span style="color:#B392F0">glBufferData</span><span style="color:#E1E4E8">(GL_ARRAY_BUFFER, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(vertices), vertices, GL_STATIC_DRAW);</span></span></code></pre></div> <h4 id="javascript">Javascript</h4> <div class="code-wrapper"><div class="code-label">javascript</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> vertices</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Float32Array</span><span style="color:#E1E4E8">([</span></span>
 <span class="line"><span style="color:#F97583">    -</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.0</span><span style="color:#E1E4E8">,</span></span>
@@ -39,11 +34,11 @@
 <span class="line"></span>
 <span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> vbo</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> gl.</span><span style="color:#B392F0">createBuffer</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">gl.</span><span style="color:#B392F0">bindBuffer</span><span style="color:#E1E4E8">(gl.</span><span style="color:#79B8FF">ARRAY_BUFFER</span><span style="color:#E1E4E8">, vbo);</span></span>
-<span class="line"><span style="color:#E1E4E8">gl.</span><span style="color:#B392F0">bufferData</span><span style="color:#E1E4E8">(gl.</span><span style="color:#79B8FF">ARRAY_BUFFER</span><span style="color:#E1E4E8">, vertices, gl.</span><span style="color:#79B8FF">STATIC_DRAW</span><span style="color:#E1E4E8">);</span></span></code></pre></div> <p>Javascript works a bit differently on the web as it uses WebGL, which runs on older OpenGL version and works with a HTML canvas instead of a window. Same principles still do apply</p> <h4 id="java">Java</h4> <div class="code-wrapper"><div class="code-label">java</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8">[] vertices </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">gl.</span><span style="color:#B392F0">bufferData</span><span style="color:#E1E4E8">(gl.</span><span style="color:#79B8FF">ARRAY_BUFFER</span><span style="color:#E1E4E8">, vertices, gl.</span><span style="color:#79B8FF">STATIC_DRAW</span><span style="color:#E1E4E8">);</span></span></code></pre></div> <p>Javascript works a bit differently on the web as it uses WebGL, which runs on older OpenGL version and works with a HTML canvas instead of a window. Same principles still do apply</p> <h4 id="java">Java</h4> <div class="code-wrapper"><div class="code-label">java</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8">[] vertices </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> &#123;</span></span>
 <span class="line"><span style="color:#F97583">    -</span><span style="color:#79B8FF">0.5f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.0f</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#79B8FF">     0.5f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.0f</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#79B8FF">     0.0f</span><span style="color:#E1E4E8">,  </span><span style="color:#79B8FF">0.5f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.0f</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#E1E4E8">&#125;;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> vbo </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GL15.</span><span style="color:#B392F0">glGenBuffers</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">GL15.</span><span style="color:#B392F0">glBindBuffer</span><span style="color:#E1E4E8">(GL15.GL_ARRAY_BUFFER, vbo);</span></span>
@@ -61,29 +56,4 @@
 <span class="line"><span style="color:#E1E4E8">position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> position </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> (up </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 5.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D">// get distance between position and (3.0, 2.0, -2.0)</span></span>
-<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> distance </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">distance</span><span style="color:#E1E4E8">(position, </span><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">vec3</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">2.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">));</span></span></code></pre></div><!--]--><!----></main> <!--[-1--><!--]--></div></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
-			
-			<script>
-				{
-					__sveltekit_gbv14j = {
-						base: new URL(".", location).pathname.slice(0, -1)
-					};
-
-					const element = document.currentScript.parentElement;
-
-					Promise.all([
-						import("./_app/immutable/entry/start.BB3HVlyq.js"),
-						import("./_app/immutable/entry/app.fmTr0np9.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 2],
-							data: [null,null],
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-	</body>
-</html>
+<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> distance </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">distance</span><span style="color:#E1E4E8">(position, </span><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">vec3</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">2.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">));</span></span></code></pre></div>`,1);function w(o){var a=u(),s=t(c(a),10);d(s,{get sketch(){return f}}),y(48),E(o,a)}export{w as component};
