@@ -9,7 +9,7 @@ On Linux there are multiple types of window protocols. We need to provide our GL
 To do that we need to check if our system has wayland or X11 installed and if so, fetch their libraries. This can be done by inserting the following example after `add_executable(MyProject ...)` and before `target_link_libraries(MyProject ...)`
 
 ```cmake
-# Only run this code on Linux
+# Only runs this code on Linux
 if(UNIX AND NOT APPLE)
     # Try to find Wayland and X11
     find_package(PkgConfig REQUIRED)
