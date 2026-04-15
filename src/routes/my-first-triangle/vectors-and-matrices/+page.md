@@ -61,6 +61,36 @@ vec3 u = vec3(3, 2, 3);
 float vectorLength = length(u);
 ```
 
+If we have two positional vectors and want to know how far are they we can combine subtraction and length together
+
+```cpp
+glm::vec3 playerPos = glm::vec3(3, 2, 3);
+glm::vec3 goalPos   = glm::vec3(1, 5, 2);
+
+float distance      = glm::length(goalPos - playerPos);
+```
+
+```glsl
+vec3 playerPos = vec3(3, 2, 3);
+vec3 goalPos   = vec3(1, 5, 2);
+
+float distance = length(goalPos - playerPos);
+```
+
+#### Length squared
+
+<Note>
+length uses the pythagorean theorem which requires calculating the square root. This is computationally expensive compared to other math functions. When we want to compare which vectors are further and closer we don't really care about the result of length but the comparison instead. Vector math libraries usually provide length2 which is a lot faster by dropping the square root from computation thus giving us the length squared
+</Note>
+
+If our math library does not provide length2 we can create our own like
+
+```glsl
+float length2(vec3 v){
+    return pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2);
+}
+```
+
 ### Normalizing
 
 Normalization is an unary term where we take our vector and limit each axis to an interval between -1 and 1. The vector keeps its direction but any movement we apply using it will result in a movement of length 1
