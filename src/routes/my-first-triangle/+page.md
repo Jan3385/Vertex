@@ -149,7 +149,7 @@ Now our GPU knows about our triangle's location. All we need to do now is to set
 
 Shaders allow us to use our vertex array buffer in order to render something to the viewport. We need to define two shaders, A vertex and fragment shader. We can use more shaders like the geometry shader between them but we do not have to do that for now
 
-A shader is written using the `GLSL`
+A shader is written using the `GLSL` programming language
 
 ### Vertex shader
 
