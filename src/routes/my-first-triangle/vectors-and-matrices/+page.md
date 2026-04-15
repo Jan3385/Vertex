@@ -87,6 +87,10 @@ If our math library does not provide length2 we can create our own like
 
 ```glsl
 float length2(vec3 v){
+    // x^2 + y^2 + z^2
+    // instead of
+    // sqrt(x^2 + y^2 + z^2)
+    
     return pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2);
 }
 ```
