@@ -29,7 +29,6 @@ while(!glfwWindowShouldClose(window)){
     // ------
 
     glfwSwapBuffers(window);
-
 }
 ```
 
@@ -55,12 +54,12 @@ This function has many arguments. Below is the definition for them
 **action** is either `GLFW_PRESS`, `GLFW_REPEAT` or `GLFW_RELEASE`
 
 **mods** is short for modifier bits which are flags triggered during mouse button press like holding shift, ctrl and such. The flags are:
- - GLFW_MOD_SHIFT
- - GLFW_MOD_CONTROL
- - GLFW_MOD_ALT
- - GLFW_MOD_SUPER - super is the name for the commonly named "windows button" or any other OS equivalent name
- - GLFW_MOD_CAPS_LOCK
- - GLFW_MOD_NUM_LOCK
+ - **GLFW_MOD_SHIFT**
+ - **GLFW_MOD_CONTROL**
+ - **GLFW_MOD_ALT**
+ - **GLFW_MOD_SUPER** - super is the name for the commonly named "windows button" or any other OS equivalent name
+ - **GLFW_MOD_CAPS_LOCK**
+ - **GLFW_MOD_NUM_LOCK**
 
 # Mouse input
 
@@ -100,9 +99,9 @@ glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 ```
 
 The *GLFW_CURSOR_DISABLED* is one of many modes a cursor can gain. Here is a short list of usable cursor modes
- - GLFW_CURSOR_NORMAL - Normal cursor behavior
- - GLFW_CURSOR_DISABLED - Cursor is not visible and automatically centered so it cannot move offscreen
- - GLFW_CURSOR_HIDDEN - Cursor is hidden but can move anywhere even outside of the window
+ - **GLFW_CURSOR_NORMAL** - Normal cursor behavior
+ - **GLFW_CURSOR_DISABLED** - Cursor is not visible and automatically centered so it cannot move offscreen
+ - **GLFW_CURSOR_HIDDEN** - Cursor is hidden but can move anywhere even outside of the window
 
 ### Delta mouse
 
@@ -137,10 +136,10 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods){
 The callback gives us three values. **button**, **action** and **mods**
 
 **button** can have the following values
- - GLFW_MOUSE_BUTTON_LEFT - left click
- - GLFW_MOUSE_BUTTON_MIDDLE - middle click
- - GLFW_MOUSE_BUTTON_RIGHT - right click
- - GLFW_MOUSE_BUTTON_X - the X can be a number between 1 and 8 (inclusive). The values 1, 2 and 3 are for the left, middle and right click and the bigger values are for things like mouse side buttons
+ - **GLFW_MOUSE_BUTTON_LEFT** - left click
+ - **GLFW_MOUSE_BUTTON_MIDDLE** - middle click
+ - **GLFW_MOUSE_BUTTON_RIGHT** - right click
+ - **GLFW_MOUSE_BUTTON_X** - the X can be a number between 1 and 8 (inclusive). The values 1, 2 and 3 are for the left, middle and right click and the bigger values are for things like mouse side buttons
 
 **action** can only be *GLFW_PRESS* or *GLFW_RELEASE*
 
@@ -168,7 +167,7 @@ The function for mouse scroll should be defined as
 
 ```cpp
 void scrollCallback(GLFWwindow* window, double xoffset, double yoffset){
-
+    // ...
 }
 ```
 

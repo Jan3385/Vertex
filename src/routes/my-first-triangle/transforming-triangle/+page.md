@@ -54,10 +54,6 @@ When setting a shader uniform each available data type has its own function. We 
 
 When using a data type with several values like `glm::mat4` or `glm::vec3` we need to pass a pointe r to the first value. This means that for `glm::vec3` we will be passing `&vector[0]`
 
-# Delta time
-
-...
-
 # Rotating a triangle
 
 As seen in the *vectors and matrices* chapter we can make a 4D matrix that rotates (or otherwise transforms) vertices. We can generate one just like
@@ -103,6 +99,10 @@ In the WebGL render above we can also see the color of the triangle changing. Th
 Later on when rendering a full object we would want to store the position, rotation and scale for all our objects and update the shader uniform for each object rendered
 
 The transform only serves to move the triangle to its world space position. If we want to make a camera and move it more based on our camera position/rotation we use a second different transform
+
+# Delta time
+
+...
 
 # Making a camera
 
