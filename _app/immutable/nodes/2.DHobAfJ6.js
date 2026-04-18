@@ -1,4 +1,4 @@
-import"../chunks/DsnmJJEf.js";import{m as t,f as c,g as E,j as i,w as y}from"../chunks/D_9WaUQ2.js";import{C as F,G as d}from"../chunks/C_nVpZx7.js";function f(o){let a=!0;const s=o.getContext("webgl2");s.clearColor(.1,.2,.3,1);const n=.75,r=new Float32Array([n,-n,0,1,0,0,-n,-n,0,0,1,0,0,n,0,0,0,1]),e=s.createBuffer();s.bindBuffer(s.ARRAY_BUFFER,e),s.bufferData(s.ARRAY_BUFFER,r,s.STATIC_DRAW);const l=F(s,`#version 300 es
+import"../chunks/DsnmJJEf.js";import{m as t,f as c,g as E,j as i,n as y}from"../chunks/3lslzhHx.js";import{C as F,G as d}from"../chunks/B6U_pLqu.js";function f(o){let a=!0;const s=o.getContext("webgl2");s.clearColor(.1,.2,.3,1);const n=.75,r=new Float32Array([n,-n,0,1,0,0,-n,-n,0,0,1,0,0,n,0,0,0,1]),e=s.createBuffer();s.bindBuffer(s.ARRAY_BUFFER,e),s.bufferData(s.ARRAY_BUFFER,r,s.STATIC_DRAW);const l=F(s,`#version 300 es
   in vec3 aPosition;
   in vec3 aColor;
 
