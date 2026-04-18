@@ -89,13 +89,16 @@ If you run the app at this stage you will notice that everything gets closed alm
 
 ```cpp
 while(!glfwWindowShouldClose(window)){
-    // input handling, rendering, ...
+    // Updates the window state with any events that were triggered like mouse movement or keyboard input
+    glfwPollEvents();
 
+    // ------
+    // input handling, rendering, ...
+    // ------
+    
     // Swaps the front and back buffers
     glfwSwapBuffers(window);
 
-    // Updates the window state with any events that were triggered like mouse movement or keyboard input
-    glfwPollEvents();
 }
 ```
 
@@ -153,20 +156,3 @@ In this screenshot from Half-Life, we can see previous frames entering the viewp
 
 <center>It is possible that your browser is clearing the buffer automatically. If you do not see expected results try a different browser</center>
 </div>
-
-## Handling input
-
-We are currently rendering our window but now it would be nice to interact with it. Later on we might want to be able to look around or walk with W, A, S, D keys and for that we will need to create our own input manager. We can go really complex with it but for now we are going to keep it simple
-
-```cpp
-void processInputs(GLFWwindow *window){
-    // close our window when space is pressed
-    if(glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        glfwSetWindowTitle(window, "Window where 'W' was pressed");
-}
-```
-
-We want to call this function right at the start of our frame

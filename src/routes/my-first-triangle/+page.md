@@ -95,7 +95,7 @@ Shader program is the pipeline of shaders used to generate an image. It takes in
 <hr>
 
 <Note>
-If you have no experience with vectors (and later on matrices) I recommend first reading the <a  href="/my-first-triangle/vectors-and-matrices/">vectors and matrices sub-chapter</a>
+If you have no experience with vectors (and later on matrices) I recommend first reading about <a  href="/my-first-triangle/vectors-and-matrices/">vectors in the vectors and matrices sub-chapter</a>
 </Note>
 
 To render our first triangle we must create an array of vertices representing our shape. A simple triangle may look like the following
@@ -189,7 +189,7 @@ A fragment shader does not interact with the bound buffers directly. It takes in
 
 It outputs `FragColor` as an RGBA value in the range (0.0, 1.0) which will be written into our frame buffer. We can rename the `FragColor` to anything we want we just need to make it the first variable that goes out. The depth buffer is calculated automatically so we do not need to worry about it
 
-If the fragment shaders finds that the pixel is further away than the pixel that was in the depth buffer it is skipped
+If the fragment shaders finds that the pixel is further away than the pixel that was in the depth buffer and we have *depth testing enabled (we will talk about this later)* it is skipped
 
 ### Compiling
 
