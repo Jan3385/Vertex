@@ -232,7 +232,7 @@ glCompileShader(myVertexShader);
 ```
 
 <Note>
-the `nullptr` inside `glShaderSource` is for a specified length of our string. It is not needed as the string will contain an null terminator
+the `nullptr` inside `glShaderSource` is for a specified length of our string. It is not needed as the string will contain a null terminator
 </Note>
 
 After compiling each of our shaders we may want to look for any compilation errors. There is an OpenGL function called `glGetShaderiv(...)` exactly for this purpose
