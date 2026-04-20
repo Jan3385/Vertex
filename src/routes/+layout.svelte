@@ -14,10 +14,11 @@
     { href: resolve('/'),                   label: 'Getting Started', level: 0 },
     { href: resolve('/setup/'),             label: 'Setup', level: 1 },
     { href: resolve('/setup/linux/'),       label: 'Linux specific CMake', level: 2 },
+    { href: resolve('/setup/dear-imgui/'),  label: 'Dear ImGui', level: 2 },
     { href: resolve('/creating-a-window/'), label: 'Creating a Window', level: 1 },
     { href: resolve('/creating-a-window/input-processing/'), label: 'Input processing', level: 2 },
     { href: resolve('/my-first-triangle/'), label: 'My First Triangle', level: 0 },
-    { href: resolve('/my-first-triangle/vectors-and-matrices/'), label: 'Vectors and Matrices', level: 1 },
+    { href: resolve('/my-first-triangle/vectors-and-matrices/'),  label: 'Vectors and Matrices', level: 1 },
     { href: resolve('/my-first-triangle/transforming-triangle/'), label: 'Transforming the triangle', level: 1 },
   ] as const;
 

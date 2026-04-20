@@ -1,3 +1,8 @@
+<script>
+  import Note from '$lib/components/Note.svelte';
+  import Warning from '$lib/components/Warning.svelte';
+</script>
+
 # What's Dear ImGui
 
 Dear ImGui is a `C++` library (that has been ported to a lot of other languages) used to quickly render debug UI for easily rendering text, making buttons etc
@@ -22,7 +27,7 @@ First we need to put the new library into the `vcpkg.json`. This can be done jus
 ...
 ```
 
-Then we need to modify the `CMakeLists.txt` to put Dear ImGui into the project with
+Then we need to modify the `CMakeLists.txt` to put Dear ImGui into our project with
 
 ```cmake
 find_package(imgui CONFIG REQUIRED)
@@ -60,6 +65,8 @@ Then at the **start** of our program we initialize ImGui
 IMGUI_CHECKVERSION();
 ImGui::CreateContext();
 ImGuiIO& io = ImGui::GetIO(); (void)io;
+// we can use `io` for ImGui configuration
+
 // ImGui::StyleColorsDark(); // <- optional dark mode
 
 ImGui_ImplGlfw_InitForOpenGL(window, true);
@@ -119,24 +126,7 @@ ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 Input handling will be discussed a bit later. I recommend first setting up OpenGL for basic rendering and input handling first and then coming back to this chapter
 </Note>
 
-Dear ImGui needs to know about our inputs like mouse movements and keyboard presses. It does not poll that automatically and we need to tell it to poll it at the beginning of our input management
-
-Before we start processing the window input in our update loop we need to do the following
-
-```cpp
-// starting to process window inputs
-
-ImGuiIO& io = ImGui::GetIO();
-
-// Our own input manager
-// ------
-glfwPollEvents();
-
-// glfwGetKey(), anything else,...
-// ------
-```
-
-During our input setup we have also overridden the mouse position and scroll callbacks. Since ImGui is no longer registered for those callbacks because of us we need to fix it by calling the ImGui callback inside our callback. The code should look something like this
+During our input setup we have overridden the mouse position, mouse button and scroll callbacks. Since ImGui is no longer registered for those callbacks we need to fix it by calling the ImGui callback inside our own callback. The code should look something like this
 
 ```cpp
 void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos){
