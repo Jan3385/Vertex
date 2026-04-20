@@ -1,4 +1,6 @@
 <script>
+  import { resolve } from '$app/paths';
+
   import GLCanvas from '$lib/components/GLCanvas.svelte';
   import spinningTriangle from '$lib/sketches/spinningTriangle.ts';
 
@@ -7,7 +9,7 @@
 </script>
 
 <Note>
-Before continuing to this chapter I recommend first reading about <a  href="/my-first-triangle/vectors-and-matrices/">matrices in the vectors and matrices sub-chapter</a>
+Before continuing to this chapter I recommend first reading about <a  href="{resolve('/my-first-triangle/vectors-and-matrices/')}">matrices in the vectors and matrices sub-chapter</a>
 </Note>
 
 # Uniforms
@@ -219,7 +221,7 @@ if(pitch > maxPitch)  pitch = maxPitch;
 if(pitch < -maxPitch) pitch = -maxPitch;
 ```
 
-This is the part were we probably want to connect our <a href="/creating-a-window/input-processing/">input system</a> with the rest of our program so we can move and look around our scene. It is as simple as modifying the camera position vector based on keys pressed and setting the camera pitch and yaw based on delta mouse movement
+This is the part were we probably want to connect our <a href="{resolve('/creating-a-window/input-processing/')}">input system</a> with the rest of our program so we can move and look around our scene. It is as simple as modifying the camera position vector based on keys pressed and setting the camera pitch and yaw based on delta mouse movement
 
 ## Projection
 

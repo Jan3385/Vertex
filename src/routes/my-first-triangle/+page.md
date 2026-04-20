@@ -1,4 +1,6 @@
 <script>
+  import { resolve } from '$app/paths';
+
   import GLCanvas from '$lib/components/GLCanvas.svelte';
   import triangle from '$lib/sketches/triangle.ts';
 
@@ -95,7 +97,7 @@ Shader program is the pipeline of shaders used to generate an image. It takes in
 <hr>
 
 <Note>
-If you have no experience with vectors (and later on matrices) I recommend first reading about <a  href="/my-first-triangle/vectors-and-matrices/">vectors in the vectors and matrices sub-chapter</a>
+If you have no experience with vectors (and later on matrices) I recommend first reading about <a  href="{resolve('/my-first-triangle/vectors-and-matrices/')}">vectors in the vectors and matrices sub-chapter</a>
 </Note>
 
 To render our first triangle we must create an array of vertices representing our shape. A simple triangle may look like the following
