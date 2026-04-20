@@ -102,7 +102,71 @@ The transform only serves to move the triangle to its world space position. If w
 
 # Delta time
 
-...
+Delta time is a variable that tells us how much time was spent between the last two frames. Let's say we want to move our triangle up by a certain amount. Right now we would put something like this in our game loop that runs every frame
+
+```cpp
+glm::vec3 trianglePos = glm::vec3(2.0f, 1.0f, -3.0f);
+glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+while(!glfwWindowShouldClose(window)){
+    trianglePos += up;
+
+    // Other per-frame stuff
+}
+```
+
+But imagine that normally we have 60FPS (frames per second). This means that the code above runs 60 times every second meaning we move by `(0, 1, 0)` 60 times so by 60 every second. Now let's say our FPS went lower or that our game is running on a slower machine and now we are only getting 20FPS. The code moving our triangle up thus only runs 20 times per second so we move by `(0, 1, 0)` 20 times meaning we move by 20 every second
+
+This is obviously not ideal as that means that our camera, player and objects will move and rotate unreliably. A player on a very good computer might move so fast the game becomes unplayable and a player with a very bad computer might move so slow it also becomes unplayable
+
+This is why we have delta time. If we have 1 FPS our delta time will equal 1 as it took 1 second between frames. Now if we have 2 FPS our delta time will be equal 0.5 as it took half a second to complete each frame and so on
+
+Now if we use our delta time with the up vector to move up by multiplying them our results will look like
+
+| FPS | delta time | calculation      | movement per frame | frames needed to move by `1` |
+|-----|------------|------------------|--------------------|------------------------------|
+|  1  |     1      |(0, 1, 0) * 1     |     (0, 1, 0)      |               1              |
+|  2  |    0.5     |(0, 1, 0) * 0.5   |    (0, 0.5, 0)     |               2              |
+|  60 |  0.01666   |(0, 1, 0) * 0.1666|  (0, 0.1666, 0)    |              60              |
+
+When using delta time our movement suddenly becomes slower and we need to account for that. If we did not use delta time before our movement moved us by around 60 depending on FPS but now we always move by 1 per second which is 60 times slower. If we still want to move by 60 per second we should write our code as
+
+```cpp
+// double deltaTime = ...;
+
+glm::vec3 trianglePos = glm::vec3(2.0f, 1.0f, -3.0f);
+glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+while(!glfwWindowShouldClose(window)){
+    trianglePos += up * 60.0f * deltaTime;
+
+    // Other per-frame stuff
+}
+```
+
+The code above is no longer FPS dependant and will result in the same movement no matter our FPS. This is perfect for any movement, rotation or time dependant value change like a timer
+
+FPS and delta time can be calculated from the other one as `1/FPS = delta time` and `1/delta time = FPS`
+
+## Calculating delta time
+
+Calculating delta time is pretty simple and only needs to be done at the start of each frame. We just take the time from the previous frame and current frame and get the difference between the two. GLFW has a function that tells us time as a double making calculating delta time easy
+
+```cpp
+double previousFrame = 0;
+double deltaTime;
+
+while(!glfwWindowShouldClose(window)){
+    double currentFrame = glfwGetTime();
+    deltaTime = currentFrame - previousFrame;
+    previousFrame = currentFrame;
+
+    // std::cout << "deltaTime: " << deltaTime << std::endl;
+    // std::cout << "FPS: " <<  1.0f/deltaTime << std::endl;
+
+    // Other per-frame stuff
+}
+```
 
 # Making a camera
 
