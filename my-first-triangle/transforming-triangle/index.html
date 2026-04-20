@@ -4,21 +4,21 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
-		<link href="../../_app/immutable/entry/start.CUtIKYIL.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/DOkfddk8.js" rel="modulepreload">
+		<link href="../../_app/immutable/entry/start.DRMAgWZj.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/CucIUmbK.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/Dtq9fVRA.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/D3xeQSz7.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/DjHInvqZ.js" rel="modulepreload">
-		<link href="../../_app/immutable/entry/app.BF2jvPcV.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/CDi_vWUn.js" rel="modulepreload">
+		<link href="../../_app/immutable/entry/app.2rEMYXEe.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/DsnmJJEf.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/DMPbwz8e.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/Bk5ubF8h.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/CKpPiF2k.js" rel="modulepreload">
-		<link href="../../_app/immutable/nodes/0.BLUQi75t.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/0.BJ4GgPQA.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/CbmbtrES.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/Is4n77an.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/BNH3RILn.js" rel="modulepreload">
-		<link href="../../_app/immutable/nodes/6.BXXqf8cz.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/CyfAhHZX.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/eiyMElHB.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/6.BHpwutOv.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/Bhpopd0P.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/CjmE_aZC.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/CEjJC-fu.js" rel="modulepreload">
@@ -42,7 +42,23 @@
 <span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#B392F0">glUniform3fv</span><span style="color:#E1E4E8">(location, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">color[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]);</span></span></code></pre></div> <p>When setting a shader uniform each available data type has its own function. We have functions like <code>glUniform3fv(..)</code>, <code>glUniformMatrix4fv(..)</code>, <code>glUniform1i(..)</code> and so on. As you can see the macro names have a naming convention describing what are we going to send. For example <code>glUniform1i</code> means that we will be sending a single (1) integer (i)</p> <p>When using a data type with several values like <code>glm::mat4</code> or <code>glm::vec3</code> we need to pass a pointe r to the first value. This means that for <code>glm::vec3</code> we will be passing <code>&amp;vector[0]</code></p> <h1 id="rotating-a-triangle">Rotating a triangle</h1> <p>As seen in the <em>vectors and matrices</em> chapter we can make a 4D matrix that rotates (or otherwise transforms) vertices. We can generate one just like</p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D">// GLuint ShaderID = shader program we want to set the uniform for</span></span>
+<span class="line"><span style="color:#B392F0">glUniform3fv</span><span style="color:#E1E4E8">(location, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">color[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]);</span></span></code></pre></div> <p>When setting a shader uniform each available data type has its own function. We have functions like <code>glUniform3fv(..)</code>, <code>glUniformMatrix4fv(..)</code>, <code>glUniform1i(..)</code> and so on. As you can see the macro names have a naming convention describing what are we going to send. For example <code>glUniform1i</code> means that we will be sending a single (1) integer (i)</p> <p>When using a data type with several values like <code>glm::mat4</code> or <code>glm::vec3</code> we need to pass a pointe r to the first value. This means that for <code>glm::vec3</code> we will be passing <code>&amp;vector[0]</code></p> <h2 id="caching-uniform-location">Caching uniform location</h2> <p>Instead of fetching the location of a uniform each time we want to set it we can cache it inside a variable and use the cached location each time we want to access the uniform instead of calling <code>glGetUniformLocation(...)</code> every time</p> <p>The location of any uniform does not change during the shader program’s lifetime</p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D">// GLuint ShaderID  = ...;</span></span>
+<span class="line"><span style="color:#6A737D">// double deltaTime = ...;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">double</span><span style="color:#E1E4E8"> time </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GLint location </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glGetUniformLocation</span><span style="color:#E1E4E8">(ShaderID, </span><span style="color:#9ECBFF">"color"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">while</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">!</span><span style="color:#B392F0">glfwWindowShouldClose</span><span style="color:#E1E4E8">(window)){</span></span>
+<span class="line"><span style="color:#E1E4E8">    time </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> deltaTime;</span><span style="color:#6A737D"> // Delta time will be explained bit later</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    glm</span><span style="color:#E1E4E8">::vec3 color;</span></span>
+<span class="line"><span style="color:#E1E4E8">    color.r </span><span style="color:#F97583">=</span><span style="color:#B392F0"> sin</span><span style="color:#E1E4E8">(time);</span></span>
+<span class="line"><span style="color:#E1E4E8">    color.g </span><span style="color:#F97583">=</span><span style="color:#B392F0"> sin</span><span style="color:#E1E4E8">(time </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 1.4</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    color.b </span><span style="color:#F97583">=</span><span style="color:#B392F0"> sin</span><span style="color:#E1E4E8">(time </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 1.8</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    glUniform3fv</span><span style="color:#E1E4E8">(location, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">color[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre></div> <h1 id="rotating-a-triangle">Rotating a triangle</h1> <p>As seen in the <em>vectors and matrices</em> chapter we can make a 4D matrix that rotates (or otherwise transforms) vertices. We can generate one just like</p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D">// GLuint ShaderID = shader program we want to set the uniform for</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::vec3 trianglePosition </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">vec3</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0.5</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.3</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.2</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"></span>
@@ -108,20 +124,55 @@
 <span class="line"><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::mat4 view </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">lookAt</span><span style="color:#E1E4E8">(cameraPosition, cameraPosition </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> forward, worldUp);</span></span></code></pre></div> <p>When we make our camera as above we can see that we have no limit to how much we can look up or down to the point where we can rotate so far that we start to see our world from behind. This is not what we want most of the time so we need to lock our pitch <strong>before</strong> calculating the forward direction</p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D">// we can look only from -89.0 degrees to 89.0 degrees</span></span>
 <span class="line"><span style="color:#F97583">constexpr</span><span style="color:#F97583"> float</span><span style="color:#E1E4E8"> maxPitch </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 89.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(pitch </span><span style="color:#F97583">></span><span style="color:#E1E4E8"> maxPitch)  pitch </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> maxPitch;</span></span>
-<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(pitch </span><span style="color:#F97583">&lt;</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">maxPitch) pitch </span><span style="color:#F97583">=</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">maxPitch;</span></span></code></pre></div> <p>This is the part were we probably want to connect our <a href="../../creating-a-window/input-processing/">input system</a> with the rest of our program so we can move and look around our scene. It is as simple as modifying the camera position vector based on keys pressed and setting the camera pitch and yaw based on delta mouse movement</p> <h2 id="projection">Projection</h2> <p>…</p><!--]--><!----></main> <!--[-1--><!--]--></div></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(pitchDeg </span><span style="color:#F97583">></span><span style="color:#E1E4E8"> maxPitch)  pitch </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> maxPitch;</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(pitchDeg </span><span style="color:#F97583">&lt;</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">maxPitch) pitch </span><span style="color:#F97583">=</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">maxPitch;</span></span></code></pre></div> <h3 id="linking-the-view-with-input">Linking the view with input</h3> <p>This is the part were we probably want to connect our <a href="../../creating-a-window/input-processing/">input system</a> with the rest of our program so we can move and look around our scene. It is as simple as modifying the camera position vector based on keys pressed and setting the camera pitch and yaw based on delta mouse movement</p> <h4 id="keyboard-movement">Keyboard movement</h4> <p>When processing the input we may want to create a vector defining the movement that will be processed this frame. The pseudo code below showcases how to create such movement vector</p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D">// double deltaTime = ...;</span></span>
+<span class="line"><span style="color:#6A737D">// glm::vec3 cameraPosition = ...;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">constexpr</span><span style="color:#F97583"> float</span><span style="color:#E1E4E8"> movementSpeed </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 2.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::vec3 movementVector </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">vec3</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(moveForward) movementVector.z </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(moveBack)    movementVector.z </span><span style="color:#F97583">-=</span><span style="color:#79B8FF"> 1.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(moveLeft)    movementVector.x </span><span style="color:#F97583">-=</span><span style="color:#79B8FF"> 1.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(moveRight)   movementVector.x </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(moveUp)      movementVector.y </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(moveDown)    movementVector.y </span><span style="color:#F97583">-=</span><span style="color:#79B8FF"> 1.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">cameraPosition </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> movementVector </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> movementSpeed </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> deltaTime;</span></span></code></pre></div> <h4 id="mouse-movement">Mouse movement</h4> <p>The next thing is implementing the camera rotation using the mouse. We are again going to create a vector representing the roll and pitch of the camera</p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D">// double deltaTime     = ...;</span></span>
+<span class="line"><span style="color:#6A737D">// glm::vec2 deltaMouse = ...;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// float yawDeg   = ...;</span></span>
+<span class="line"><span style="color:#6A737D">// float pitchDeg = ...;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">constexpr</span><span style="color:#F97583"> double</span><span style="color:#E1E4E8"> mouseSensitivity </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 2.0</span><span style="color:#F97583">f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::vec2 deltaCameraRotation </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> deltaMouse </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> mouseSensitivity </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> deltaTime;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">yawDeg   </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> deltaCameraRotation.x;</span></span>
+<span class="line"><span style="color:#E1E4E8">pitchDeg </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> deltaCameraRotation.y;</span></span></code></pre></div> <p>Before using the mouse for rotating the camera we should disable the mouse cursor as seen in the <a href="../../creating-a-window/input-processing/">input processing chapter</a></p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#B392F0">glfwSetInputMode</span><span style="color:#E1E4E8">(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);</span></span></code></pre></div> <h4 id="keyboard-movement-based-on-camera-rotation">Keyboard movement based on camera rotation</h4> <p>If we use the current keyboard movement and camera movement we will notice how the keyboard movement don’t translate well with how the camera is rotated. We are moving strictly along the X, Y and Z axis as if we were looking directly forward no matter where we look</p> <p>After we create the <code>movementVector</code> but before adding it to <code>cameraPosition</code> we should translate it based on the camera rotation</p> <div class="code-wrapper"><div class="code-label">cpp</div><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#6A737D">// glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f);</span></span>
+<span class="line"><span style="color:#6A737D">// glm::vec3 forward = ...; // &lt;- forward direction of the camera</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// glm::vec3 movementVector = ...; // &lt;- from our input</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::vec3 right </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">normalize</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">cross</span><span style="color:#E1E4E8">(Front, worldUp));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">movementVector </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> forward </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> movementVector.y </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> right </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> movementVector.x </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> movementVector.z </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> worldUp;</span></span>
+<span class="line"><span style="color:#E1E4E8">movementVector </span><span style="color:#F97583">=</span><span style="color:#B392F0"> glm</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">normalize</span><span style="color:#E1E4E8">(movementVector);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// cameraPosition = ...;</span></span></code></pre></div> <p>After adding the code above to the movement code moving forward will no longer move us strictly along the Z axis but moves us forward based on the angle of the camera</p> <h2 id="projection">Projection</h2> <p>…</p><!--]--><!----></main> <!--[-1--><!--]--></div></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_zm53x5 = {
+					__sveltekit_4o4dli = {
 						base: new URL("../..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../../_app/immutable/entry/start.CUtIKYIL.js"),
-						import("../../_app/immutable/entry/app.BF2jvPcV.js")
+						import("../../_app/immutable/entry/start.DRMAgWZj.js"),
+						import("../../_app/immutable/entry/app.2rEMYXEe.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 6],
