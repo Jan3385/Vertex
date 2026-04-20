@@ -56,6 +56,32 @@ When setting a shader uniform each available data type has its own function. We 
 
 When using a data type with several values like `glm::mat4` or `glm::vec3` we need to pass a pointe r to the first value. This means that for `glm::vec3` we will be passing `&vector[0]`
 
+## Caching uniform location
+
+Instead of fetching the location of a uniform each time we want to set it we can cache it inside a variable and use the cached location each time we want to access the uniform instead of calling `glGetUniformLocation(...)` every time
+
+The location of any uniform does not change during the shader program's lifetime
+
+```cpp
+// GLuint ShaderID  = ...;
+// double deltaTime = ...;
+
+double time = 0;
+
+GLint location = glGetUniformLocation(ShaderID, "color");
+
+while(!glfwWindowShouldClose(window)){
+    time += deltaTime; // Delta time will be explained bit later
+
+    glm::vec3 color;
+    color.r = sin(time);
+    color.g = sin(time * 1.4f);
+    color.b = sin(time * 1.8f);
+
+    glUniform3fv(location, 1, &color[0]);
+}
+```
+
 # Rotating a triangle
 
 As seen in the *vectors and matrices* chapter we can make a 4D matrix that rotates (or otherwise transforms) vertices. We can generate one just like
@@ -217,11 +243,82 @@ When we make our camera as above we can see that we have no limit to how much we
 // we can look only from -89.0 degrees to 89.0 degrees
 constexpr float maxPitch = 89.0f;
 
-if(pitch > maxPitch)  pitch = maxPitch;
-if(pitch < -maxPitch) pitch = -maxPitch;
+if(pitchDeg > maxPitch)  pitch = maxPitch;
+if(pitchDeg < -maxPitch) pitch = -maxPitch;
 ```
 
+### Linking the view with input
+
 This is the part were we probably want to connect our <a href="{resolve('/creating-a-window/input-processing/')}">input system</a> with the rest of our program so we can move and look around our scene. It is as simple as modifying the camera position vector based on keys pressed and setting the camera pitch and yaw based on delta mouse movement
+
+#### Keyboard movement
+
+When processing the input we may want to create a vector defining the movement that will be processed this frame. The pseudo code below showcases how to create such movement vector
+
+```cpp
+// double deltaTime = ...;
+// glm::vec3 cameraPosition = ...;
+
+constexpr float movementSpeed = 2.0f;
+
+glm::vec3 movementVector = glm::vec3(0.0f);
+if(moveForward) movementVector.z += 1.0f;
+if(moveBack)    movementVector.z -= 1.0f;
+if(moveLeft)    movementVector.x -= 1.0f;
+if(moveRight)   movementVector.x += 1.0f;
+
+if(moveUp)      movementVector.y += 1.0f;
+if(moveDown)    movementVector.y -= 1.0f;
+
+cameraPosition += movementVector * movementSpeed * deltaTime;
+```
+
+#### Mouse movement
+
+The next thing is implementing the camera rotation using the mouse. We are again going to create a vector representing the roll and pitch of the camera
+
+```cpp
+// double deltaTime     = ...;
+// glm::vec2 deltaMouse = ...;
+
+// float yawDeg   = ...;
+// float pitchDeg = ...;
+
+constexpr double mouseSensitivity = 2.0f;
+
+glm::vec2 deltaCameraRotation = deltaMouse * mouseSensitivity * deltaTime;
+
+yawDeg   += deltaCameraRotation.x;
+pitchDeg += deltaCameraRotation.y;
+```
+
+Before using the mouse for rotating the camera we should disable the mouse cursor as seen in the <a  href="{resolve('/creating-a-window/input-processing/')}">input processing chapter</a>
+
+```cpp
+glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+```
+
+#### Keyboard movement based on camera rotation
+
+If we use the current keyboard movement and camera movement we will notice how the keyboard movement don't translate well with how the camera is rotated. We are moving strictly along the X, Y and Z axis as if we were looking directly forward no matter where we look
+
+After we create the `movementVector` but before adding it to `cameraPosition` we should translate it based on the camera rotation
+
+```cpp
+// glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f);
+// glm::vec3 forward = ...; // <- forward direction of the camera
+
+// glm::vec3 movementVector = ...; // <- from our input
+
+glm::vec3 right = glm::normalize(glm::cross(Front, worldUp));
+
+movementVector = forward * movementVector.y + right * movementVector.x + movementVector.z * worldUp;
+movementVector = glm::normalize(movementVector);
+
+// cameraPosition = ...;
+```
+
+After adding the code above to the movement code moving forward will no longer move us strictly along the Z axis but moves us forward based on the angle of the camera
 
 ## Projection
 
