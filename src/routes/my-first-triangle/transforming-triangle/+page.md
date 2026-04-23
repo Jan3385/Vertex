@@ -71,7 +71,7 @@ double time = 0;
 GLint location = glGetUniformLocation(ShaderID, "color");
 
 while(!glfwWindowShouldClose(window)){
-    time += deltaTime; // Delta time will be explained bit later
+    time += deltaTime; // Delta time will be explained a bit later
 
     glm::vec3 color;
     color.r = sin(time);
@@ -321,5 +321,63 @@ movementVector = glm::normalize(movementVector);
 After adding the code above to the movement code moving forward will no longer move us strictly along the Z axis but moves us forward based on the angle of the camera
 
 ## Projection
+
+The second transform for our camera is the projection transform. It specifies how is the scene projected onto our screen
+
+We have two types of projection
+ - *Orthographic*
+ - *Perspective*
+
+We only need to update the projection matrix each time the window resizes as both perspective and orthographic projections take window width and window height. When no window resize happens we can just reuse the previous projection transform
+
+### Near/Far plane
+
+The near plane specifies the minimum distance from the camera that will not be rendered. Anything closer than the near plane will be invisible
+
+The far plane specifies the maximum distance from the camera that will not be rendered. Anything further than the far plane will be invisible
+
+Both of these values are to specify the depth buffers minimum and maximum range which can be mapped onto the float values in the depth buffer texture
+
+For now we can use the values `0.1f` and `500.0f` as these are fairly standard values however based on your setup you can tweak these values. We do not want to set the range between these values too far as it can lead to floating point precision errors which lead to z-fighting
+
+### Perspective projection
+
+TODO: image
+
+Perspective projection is the more commonly used one. It distorts objects in the distance making them appear smaller. The projection area is a cone shape
+
+```cpp
+// float screenWidth;
+// float screenHeight;
+
+constexpr float nearPlane = 0.1f;
+constexpr float farPlane  = 500.0f;
+float FOV = 90.0f;
+float aspectRatio = screenWidth / screenHeight;
+
+glm::mat4 projection = glm::perspective(glm::radians(FOV), aspectRatio, nearPlane, farPlane);  
+```
+
+<Note>
+To zoom in or zoom out with our camera we can just set the FOV variable to a different value. Each time we modify the FOV we also need to call the `glm::perspective()` to reconstruct the projection matrix 
+</Note>
+
+### Orthographic projection
+
+TODO: image
+
+Orthographic projection does not distort the projected objects in distance. The projection area resembles a box shape
+
+```cpp
+// float screenWidth;
+// float screenHeight;
+
+constexpr float nearPlane = 0.1f;
+constexpr float farPlane  = 500.0f;
+
+glm::mat4 perspective = glm::ortho(0.0f, screenWidth, 0.0f, screenHeight, nearPlane, farPlane);
+```
+
+## Combining everything together
 
 ...
