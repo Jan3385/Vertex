@@ -11,7 +11,7 @@
 
 Linux CMakeLists.txt setup is shown in [this linux setup guide](/setup/linux/)
 
-[There is an example project](https://github.com/Jan3385/Vertex/tree/main/example-project) in the github for these docs which you can download to have the project already set up. If you plan to just download the template I do still recommend to read this chapter as some apps need to be configured outside of the project
+[There is an example project](https://github.com/Jan3385/Vertex/tree/main/example-project) in the github for these docs which you can download to have the project already set up. If you plan to just download the template I do still recommend to read this chapter as some apps (such as VCPKG) need to be configured outside of the project
 
 ## GLAD
 
@@ -31,7 +31,7 @@ VCPKG is a package manager for `C` and `C++` that lets us easily manage, downloa
 
 First thing we need to do is to download the vcpkg
 
-Windows:
+**Windows**:
 ```bash
 git clone https://github.com/microsoft/vcpkg.git C:\dev\vcpkg
 cd C:\dev\vcpkg
@@ -44,7 +44,7 @@ setx VCPKG_ROOT "C:\dev\vcpkg"
 .\vcpkg integrate install
 ```
 
-Linux:
+**Linux**:
 ```bash
 git clone https://github.com/microsoft/vcpkg.git ~/vcpkg
 cd ~/vcpkg

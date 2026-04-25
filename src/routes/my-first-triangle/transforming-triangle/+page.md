@@ -342,7 +342,7 @@ For now we can use the values `0.1f` and `500.0f` as these are fairly standard v
 
 ### Perspective projection
 
-TODO: image
+<img src="../../images/perspective-camera.png" width="450" alt="Perspective camera">
 
 Perspective projection is the more commonly used one. It distorts objects in the distance making them appear smaller. The projection area is a cone shape
 
@@ -364,9 +364,13 @@ To zoom in or zoom out with our camera we can just set the FOV variable to a dif
 
 ### Orthographic projection
 
-TODO: image
+<img src="../../images/orthographic-camera.png" width="450" alt="Orthographic camera">
 
 Orthographic projection does not distort the projected objects in distance. The projection area resembles a box shape
+
+<Note>
+Notice how all three cubes inside the camera viewport look as if they were the same size even when you can clearly see in the perspective camera that their distance from the camera greatly differs
+</Note>
 
 ```cpp
 // float screenWidth;
@@ -375,9 +379,64 @@ Orthographic projection does not distort the projected objects in distance. The 
 constexpr float nearPlane = 0.1f;
 constexpr float farPlane  = 500.0f;
 
-glm::mat4 perspective = glm::ortho(0.0f, screenWidth, 0.0f, screenHeight, nearPlane, farPlane);
+glm::mat4 projection = glm::ortho(0.0f, screenWidth, 0.0f, screenHeight, nearPlane, farPlane);
 ```
 
 ## Combining everything together
 
-...
+The view and projection is now enough to move the objects with the camera. We can send both of these matrices to each shader and let them combine together and afterwards move vertices with them or we can combine them before sending just a single matrix
+
+**Without combining** them the shader may look as
+
+```glsl
+// Vertex shader
+
+layout (location = 0) in vec3 pos;
+
+// Transform from the previous chapters
+uniform mat4 transform;
+
+// Camera matrices
+uniform mat4 projection;
+uniform mat4 view;
+
+void main()
+{
+    mat4 combinedMatrix = projection * view * transform;
+    gl_Position = combinedMatrix * vec4(pos.xyz, 1.0);
+}
+```
+
+Another approach is **combining** the projection and view on the CPU so that we do not have to send both matrices and calculate them for each shader/vertex
+
+```cpp
+// GLuint ShaderID = ...;
+
+// glm::mat4 view = ...;
+// glm::mat4 projection = ...;
+
+glm::mat4 camera = projection * view;
+
+GLint location = glGetUniformLocation(ShaderID, "camera");
+glUniformMatrix4fv(location, 1, GL_FALSE, &camera[0][0]);
+```
+
+```glsl
+// Vertex shader
+
+layout (location = 0) in vec3 pos;
+
+uniform mat4 transform;
+
+uniform mat4 camera;
+
+void main()
+{
+    mat4 combinedMatrix = camera * transform;
+    gl_Position = combinedMatrix * vec4(pos.xyz, 1.0);
+}
+```
+
+<Note>
+We usually do not want to combine the camera matrix with the transform matrix on the CPU as that will have to be computed individually for each object anyway. The important part is that during the entire frame the view and projection does not change so we can compute it once at the beginning of the frame
+</Note>

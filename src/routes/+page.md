@@ -12,10 +12,14 @@ This guide will be using **OpenGL** with **C++**, **GLFW**, **GLAD** and **GLM**
 
 If you are planning to use C++ you should follow the [setup guide](/setup/) to create your project
 
-If you ever need additional resources for learning OpenGL [learnopengl.com](https://learnopengl.com) is a great place to start
+If you ever need *additional resources* for learning OpenGL [learnopengl.com](https://learnopengl.com) is a great place to start
+
+This guide will not teach you *all there is* to OpenGL but it should give you a nice start for making your own project
 
 During this guide you may see canvas elements such as this one:
+
 <GLCanvas sketch={colorfulTriangle}/>
+
 These canvas elements provide you with a live visual feedback of what is being showcased. These canvas elements use WebGL context which is really similar to OpenGL
 
 ## Do I need to use C++?
